@@ -97,10 +97,18 @@ export const Hero: React.FC = () => (
           </h1>
 
           {/* Supporting copy */}
-          <p className="text-[15.5px] text-pip-mid leading-[1.72] mb-9 max-w-[400px]">
+          <p className="text-[15.5px] text-pip-mid leading-[1.72] mb-6 max-w-[400px]">
             PiP Blocks is a forex trading community focused on mentorship,
             market analysis, trading ideas and practical development.
           </p>
+
+          {/* Markets We Trade strip — subtle, clean, editorial */}
+          <div className="mb-8 border-l-2 border-pip-red/30 pl-3">
+            <div className="pip-label mb-1" style={{ fontSize: '9.5px' }}>Markets We Trade</div>
+            <div className="text-[12px] font-semibold text-pip-charcoal tracking-wider uppercase leading-snug">
+              FOREX <span className="text-pip-red/70 font-normal">·</span> SYNTHETICS <span className="text-pip-red/70 font-normal">·</span> METALS <span className="text-pip-red/70 font-normal">·</span> INDICES <span className="text-pip-red/70 font-normal">·</span> COMMODITIES <span className="text-pip-red/70 font-normal">·</span> CRYPTO
+            </div>
+          </div>
 
           {/* ── Real CTA buttons ─────────────────────────────────────── */}
           <div className="flex flex-wrap items-center gap-3 mb-8">
