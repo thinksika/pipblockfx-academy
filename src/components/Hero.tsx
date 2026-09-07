@@ -68,16 +68,16 @@ export const Hero: React.FC = () => (
   <section
     id="hero"
     aria-label="Hero"
-    className="min-h-screen flex items-center bg-white border-b border-pip-border pt-[65px]"
+    className="min-h-0 lg:min-h-screen flex items-center bg-white border-b border-pip-border pt-[65px]"
   >
     <div className="max-w-site mx-auto px-5 sm:px-8 w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[calc(100vh-65px)]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-0 lg:min-h-[calc(100vh-65px)]">
 
         {/* ── LEFT — Copy + Real CTA buttons ──────────────────────────── */}
-        <div className="flex flex-col justify-center py-16 lg:py-24 lg:pr-16">
+        <div className="flex flex-col justify-start lg:justify-center pt-8 pb-12 sm:pt-12 sm:pb-16 lg:py-24 lg:pr-16">
 
           {/* Eyebrow */}
-          <div className="flex items-center gap-2.5 mb-10">
+          <div className="flex items-center gap-2.5 mb-6 lg:mb-10">
             <span className="w-5 h-px bg-pip-red shrink-0" aria-hidden="true" />
             <span className="pip-label">PIPBLOCKFX / Forex Trading Academy</span>
           </div>
