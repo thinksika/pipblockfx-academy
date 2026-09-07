@@ -10,6 +10,7 @@ import { Bootcamp }       from './components/Bootcamp';
 import { HowItWorks }     from './components/HowItWorks';
 import { FAQ }            from './components/FAQ';
 import { FinalCTA }       from './components/FinalCTA';
+import { ConnectSection } from './components/ConnectSection';
 import { Footer }         from './components/Footer';
 
 /*
@@ -41,6 +42,7 @@ export default function App() {
         <HowItWorks />
         <FAQ />
         <FinalCTA />
+        <ConnectSection />
       </main>
       <Footer />
     </>
