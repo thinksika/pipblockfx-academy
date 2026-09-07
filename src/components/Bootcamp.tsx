@@ -1,5 +1,5 @@
 import React from 'react';
-import { TELEGRAM_URL, WHATSAPP_URL } from '../data/siteData';
+import { TELEGRAM_DIRECT_URL, WHATSAPP_URL } from '../data/siteData';
 
 const OUTLINE = [
   'Advanced Market Structure',
@@ -127,7 +127,7 @@ export const Bootcamp: React.FC = () => (
               <span aria-hidden="true">→</span>
             </a>
             <a
-              href={TELEGRAM_URL}
+              href={TELEGRAM_DIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost-dark justify-between"

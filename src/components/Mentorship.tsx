@@ -1,5 +1,5 @@
 import React from 'react';
-import { TELEGRAM_URL, WHATSAPP_URL } from '../data/siteData';
+import { TELEGRAM_DIRECT_URL, WHATSAPP_URL } from '../data/siteData';
 
 /* ── Syllabus data from the supplied class document ─────────────────── */
 const MODULES = [
@@ -120,7 +120,7 @@ export const Mentorship: React.FC = () => (
           {/* CTA buttons */}
           <div className="flex flex-col gap-3 sm:items-end w-full sm:w-auto">
             <a
-              href={TELEGRAM_URL}
+              href={TELEGRAM_DIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary w-full sm:w-auto justify-center sm:justify-start"

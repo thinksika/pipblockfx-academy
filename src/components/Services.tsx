@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TELEGRAM_URL } from '../data/siteData';
+import { TELEGRAM_COMMUNITY_URL, TELEGRAM_DIRECT_URL } from '../data/siteData';
 
 const scrollTo = (id: string) =>
   document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -25,14 +25,14 @@ const ROWS: Row[] = [
     title: 'MARKET ANALYSIS',
     desc:  'Market observations and technical analysis shared through our community.',
     cta:   'Join Community',
-    action: () => window.open(TELEGRAM_URL, '_blank', 'noopener,noreferrer'),
+    action: () => window.open(TELEGRAM_COMMUNITY_URL, '_blank', 'noopener,noreferrer'),
   },
   {
     num:   '03',
     title: 'TRADING IDEAS & SIGNALS',
     desc:  'Trading ideas and signals shared through the PiP Blocks community.',
     cta:   'Enquire',
-    action: () => window.open(TELEGRAM_URL, '_blank', 'noopener,noreferrer'),
+    action: () => window.open(TELEGRAM_DIRECT_URL, '_blank', 'noopener,noreferrer'),
   },
   {
     num:   '04',

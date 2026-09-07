@@ -1,5 +1,14 @@
 import React from 'react';
-import { TELEGRAM_URL, INSTAGRAM_URL, FACEBOOK_URL } from '../data/siteData';
+import {
+  TELEGRAM_COMMUNITY_URL,
+  TELEGRAM_DIRECT_URL,
+  WHATSAPP_URL,
+  YOUTUBE_URL,
+  TIKTOK_URL,
+  BROKER_URL,
+  INSTAGRAM_URL,
+  FACEBOOK_URL,
+} from '../data/siteData';
 
 const NAV_LINKS = [
   { name: 'About',      href: '#about'      },
@@ -11,10 +20,14 @@ const NAV_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { name: 'Telegram',  href: TELEGRAM_URL,  active: true  },
-  { name: 'Instagram', href: INSTAGRAM_URL, active: true  },
-  { name: 'Facebook',  href: FACEBOOK_URL,  active: true  },
-  { name: 'TikTok',    href: null,          active: false },
+  { name: 'Telegram Community', href: TELEGRAM_COMMUNITY_URL, active: true },
+  { name: 'Message Telegram',   href: TELEGRAM_DIRECT_URL,    active: true },
+  { name: 'WhatsApp',          href: WHATSAPP_URL,           active: true },
+  { name: 'YouTube',           href: YOUTUBE_URL,            active: true },
+  { name: 'TikTok',            href: TIKTOK_URL,             active: true },
+  { name: 'Recommended Broker',href: BROKER_URL,             active: true },
+  { name: 'Instagram',         href: INSTAGRAM_URL,          active: true },
+  { name: 'Facebook',          href: FACEBOOK_URL,           active: true },
 ];
 
 export const Footer: React.FC = () => {

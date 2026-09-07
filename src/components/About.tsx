@@ -46,7 +46,7 @@ export const About: React.FC = () => (
       <div className="border-t border-pip-border py-5 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-0 sm:divide-x sm:divide-pip-border">
         {[
           { l: 'Community Focus', v: 'Forex Markets'          },
-          { l: 'Primary Channel', v: 'Telegram — @pipblockfx' },
+          { l: 'Primary Channel', v: 'Telegram — @pipblcksfxhuz' },
           { l: 'Core Mission',    v: 'Education & Development' },
         ].map(item => (
           <div key={item.l} className="sm:px-7 first:pl-0 last:pr-0">

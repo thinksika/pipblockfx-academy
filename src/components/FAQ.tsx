@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: 'How can I join the Telegram community?',
-    a: 'Visit https://t.me/pipblockfx or click any "Join Community" button on this website to access the PiP Blocks Telegram channel.',
+    a: 'Visit https://t.me/pipblcksfxhuz or click any "Join Community" button on this website to access the PiP Blocks Telegram channel.',
   },
   {
     q: 'Do you provide market analysis and signals?',
@@ -23,7 +23,7 @@ const FAQS = [
   },
   {
     q: 'How do I register for a bootcamp?',
-    a: 'Bootcamp registrations are managed directly by the PiP Blocks team. Contact us via WhatsApp at +233 53 813 2060 or through our Telegram channel. There is no online payment or checkout.',
+    a: 'Bootcamp registrations are managed directly by the PiP Blocks team. Contact us via WhatsApp at https://wa.me/233538132060 or message directly on Telegram at https://t.me/pipblockfx. There is no online payment or checkout.',
   },
   {
     q: 'Do you provide financial advice?',

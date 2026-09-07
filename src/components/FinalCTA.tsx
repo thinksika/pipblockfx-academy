@@ -1,10 +1,13 @@
 import React from 'react';
-import { TELEGRAM_URL, WHATSAPP_URL, INSTAGRAM_URL, FACEBOOK_URL } from '../data/siteData';
+import { TELEGRAM_COMMUNITY_URL, TELEGRAM_DIRECT_URL, WHATSAPP_URL, YOUTUBE_URL, TIKTOK_URL, BROKER_URL, INSTAGRAM_URL, FACEBOOK_URL } from '../data/siteData';
 
 const SOCIAL = [
-  { label: 'Instagram', handle: 'PiP Blocks Forex',   href: INSTAGRAM_URL, active: true  },
-  { label: 'Facebook',  handle: 'PiP Block Forex',    href: FACEBOOK_URL,  active: true  },
-  { label: 'TikTok',    handle: 'Coming Soon',        href: null,          active: false },
+  { label: 'Direct Telegram',    handle: '@pipblockfx',        href: TELEGRAM_DIRECT_URL, active: true },
+  { label: 'Instagram',          handle: '@pipblock_fx',       href: INSTAGRAM_URL,       active: true },
+  { label: 'Facebook',           handle: 'PiP Block Forex',    href: FACEBOOK_URL,        active: true },
+  { label: 'YouTube',            handle: 'PiP Blocks Forex',   href: YOUTUBE_URL,         active: true },
+  { label: 'TikTok',             handle: '@pipblockfx_',       href: TIKTOK_URL,          active: true },
+  { label: 'Recommended Broker', handle: 'IUX Markets',        href: BROKER_URL,          active: true },
 ];
 
 export const FinalCTA: React.FC = () => (
@@ -46,14 +49,14 @@ export const FinalCTA: React.FC = () => (
 
             {/* Telegram — block-style, prominent */}
             <a
-              href={TELEGRAM_URL}
+              href={TELEGRAM_COMMUNITY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-between py-5 px-6 bg-pip-charcoal hover:bg-pip-red text-white transition-colors duration-200 group"
               aria-label="Join the PiP Blocks community on Telegram"
             >
               <div>
-                <div className="pip-label text-white/50 mb-1">Telegram</div>
+                <div className="pip-label text-white/50 mb-1">Telegram Community</div>
                 <div className="text-[13px] font-semibold uppercase tracking-[0.07em]">
                   Join the Community →
                 </div>
@@ -98,14 +101,14 @@ export const FinalCTA: React.FC = () => (
           {/* Telegram row first */}
           <div className="divide-y divide-pip-border border-t border-pip-border">
             <a
-              href={TELEGRAM_URL}
+              href={TELEGRAM_COMMUNITY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-between py-5 hover:opacity-60 transition-opacity group"
             >
               <div>
-                <div className="pip-label mb-0.5">Telegram</div>
-                <div className="text-[15px] font-semibold text-pip-charcoal">@pipblockfx</div>
+                <div className="pip-label mb-0.5">Telegram Community</div>
+                <div className="text-[15px] font-semibold text-pip-charcoal">@pipblcksfxhuz</div>
               </div>
               <span className="text-pip-border-md group-hover:translate-x-1 transition-transform" aria-hidden="true">→</span>
             </a>

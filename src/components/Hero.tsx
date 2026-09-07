@@ -1,5 +1,5 @@
 import React from 'react';
-import { TELEGRAM_URL } from '../data/siteData';
+import { TELEGRAM_COMMUNITY_URL } from '../data/siteData';
 
 const scrollTo = (id: string) =>
   document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -105,7 +105,7 @@ export const Hero: React.FC = () => (
           {/* ── Real CTA buttons ─────────────────────────────────────── */}
           <div className="flex flex-wrap items-center gap-3 mb-8">
             <a
-              href={TELEGRAM_URL}
+              href={TELEGRAM_COMMUNITY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"

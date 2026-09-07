@@ -1,5 +1,5 @@
 import React from 'react';
-import { TELEGRAM_URL } from '../data/siteData';
+import { TELEGRAM_COMMUNITY_URL } from '../data/siteData';
 
 const STATS = [
   { value: '1.4K+',  label: 'Community Subscribers' },
@@ -43,7 +43,7 @@ export const Community: React.FC = () => (
           </p>
           {/* Real button — not a text link */}
           <a
-            href={TELEGRAM_URL}
+            href={TELEGRAM_COMMUNITY_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"

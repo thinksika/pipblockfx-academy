@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TELEGRAM_URL } from '../data/siteData';
+import { TELEGRAM_COMMUNITY_URL } from '../data/siteData';
 
 const NAV = [
   { name: 'About',      href: '#about'      },
@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
+          <a href={TELEGRAM_COMMUNITY_URL} target="_blank" rel="noopener noreferrer"
             className="btn-primary hidden lg:inline-flex text-[11px]">
             Join Community
           </a>
@@ -126,7 +126,7 @@ export const Navbar: React.FC = () => {
               ))}
             </nav>
             <div className="mt-7">
-              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
+              <a href={TELEGRAM_COMMUNITY_URL} target="_blank" rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="btn-primary w-full justify-center text-[12px]">
                 Join Community

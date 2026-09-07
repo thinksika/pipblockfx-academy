@@ -1,5 +1,5 @@
 import React from 'react';
-import { TELEGRAM_URL } from '../data/siteData';
+import { TELEGRAM_DIRECT_URL } from '../data/siteData';
 
 const COLS = [
   {
@@ -69,7 +69,7 @@ export const MarketAnalysis: React.FC = () => (
       {/* CTA row */}
       <div className="py-6 flex items-center gap-4">
         <a
-          href={TELEGRAM_URL}
+          href={TELEGRAM_DIRECT_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary text-[11px]"
