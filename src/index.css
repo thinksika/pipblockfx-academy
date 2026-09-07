@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #171717;
+    font-family: Inter, system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: #E53514; color: #fff; }
+
+  :focus-visible {
+    outline: 2px solid #E53514;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  img { max-width: 100%; display: block; }
+}
+
+/* ── Design-system utilities ──────────────────────────────────────────── */
+@layer utilities {
+  /* Upper-case label — used for section numbers, column headers */
+  .pip-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #888888;
+  }
+
+  /* Primary solid button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #171717;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+    border: 1.5px solid #171717;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: #E53514; border-color: #E53514; }
+
+  /* Ghost / outlined button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #171717;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    cursor: pointer;
+    border: 1.5px solid #CCCCCA;
+    transition: border-color 0.18s ease, color 0.18s ease;
+    white-space: nowrap;
+  }
+  .btn-ghost:hover { border-color: #171717; color: #171717; }
+
+  /* White button (used on dark backgrounds) */
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFFFFF;
+    color: #171717;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    cursor: pointer;
+    border: 1.5px solid #FFFFFF;
+    transition: background 0.18s ease, color 0.18s ease;
+    white-space: nowrap;
+  }
+  .btn-white:hover { background: #E53514; border-color: #E53514; color: #FFFFFF; }
+
+  /* Ghost on dark */
+  .btn-ghost-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    transition: border-color 0.18s ease, color 0.18s ease;
+    white-space: nowrap;
+  }
+  .btn-ghost-dark:hover { border-color: rgba(255,255,255,0.6); color: #FFFFFF; }
+
+  /* Subtle text-link arrow  */
+  .arrow-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition: color 0.15s ease;
+  }
+  .arrow-link .arr { transition: transform 0.15s ease; }
+  .arrow-link:hover .arr { transform: translateX(4px); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #F7F7F5; }
+::-webkit-scrollbar-thumb { background: #DDDDDB; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #E53514; }
