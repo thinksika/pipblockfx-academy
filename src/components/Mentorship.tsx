@@ -100,10 +100,10 @@ export const Mentorship: React.FC = () => (
           </p>
         </div>
 
-        {/* Price block — editorial, not a pricing card with glows */}
-        <div className="flex flex-col justify-between sm:items-end">
-          <div className="sm:text-right mb-8 sm:mb-0">
-            <div className="pip-label mb-2">Program Fee</div>
+        {/* Price block — editorial, refined right side balance */}
+        <div className="flex flex-col justify-between sm:items-end gap-6">
+          <div className="sm:text-right">
+            <div className="pip-label mb-1.5">Program Fee</div>
             <div
               className="font-display font-extrabold text-pip-charcoal"
               style={{
@@ -114,16 +114,16 @@ export const Mentorship: React.FC = () => (
             >
               $370
             </div>
-            <p className="text-[11px] text-pip-muted mt-2">No refund policy · Terms & conditions apply</p>
+            <p className="text-[11px] text-pip-muted mt-2.5">No refund policy · Terms & conditions apply</p>
           </div>
 
-          {/* CTA buttons */}
-          <div className="flex flex-col gap-3 sm:items-end w-full sm:w-auto">
+          {/* CTA buttons — refined size, 8px rounded corners */}
+          <div className="flex flex-col gap-2.5 sm:items-end w-full sm:w-auto">
             <a
               href={TELEGRAM_DIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary w-full sm:w-auto justify-center sm:justify-start"
+              className="inline-flex items-center justify-center gap-2 bg-pip-charcoal hover:bg-pip-red text-white text-[11.5px] font-semibold tracking-[0.09em] uppercase py-[10px] px-[20px] rounded-[8px] border border-pip-charcoal hover:border-pip-red transition-all duration-180 w-full sm:w-auto text-center"
               aria-label="Enquire about mentorship on Telegram"
             >
               Enquire About Mentorship →
@@ -132,7 +132,7 @@ export const Mentorship: React.FC = () => (
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-ghost w-full sm:w-auto justify-center sm:justify-start"
+              className="inline-flex items-center justify-center gap-2 bg-transparent hover:border-pip-charcoal text-pip-charcoal text-[11.5px] font-semibold tracking-[0.09em] uppercase py-[9.5px] px-[20px] rounded-[8px] border border-[#CCCCCA] transition-all duration-180 w-full sm:w-auto text-center"
               aria-label="Chat about mentorship on WhatsApp"
             >
               Chat on WhatsApp →
