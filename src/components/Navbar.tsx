@@ -7,6 +7,7 @@ const NAV = [
   { name: 'Mentorship', href: '#mentorship' },
   { name: 'Bootcamp',   href: '#bootcamp'   },
   { name: 'Community',  href: '#community'  },
+  { name: 'Connect',    href: '#connect'    },
   { name: 'FAQ',        href: '#faq'        },
 ];
 

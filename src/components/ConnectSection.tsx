@@ -65,7 +65,7 @@ export const ConnectSection: React.FC = () => {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section id="connect-links" aria-label="Connect with PiP Blocks" className="bg-white border-b border-pip-border">
+    <section id="connect" aria-label="Connect with PiP Blocks" className="bg-white border-b border-pip-border">
       <div className="max-w-site mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
 
         {/* Section Label */}
