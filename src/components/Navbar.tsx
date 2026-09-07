@@ -25,10 +25,13 @@ export const Navbar: React.FC = () => {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const go = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    // Small delay to allow menu close animation
+    setTimeout(() => {
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   return (
@@ -40,11 +43,11 @@ export const Navbar: React.FC = () => {
             : 'border-b border-pip-border py-[14px]'
         }`}
       >
-        <div className="max-w-site mx-auto px-5 sm:px-8 flex items-center justify-between gap-6">
+        <div className="max-w-site mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
 
           {/* Brand */}
-          <a href="#hero" onClick={e => go(e, '#hero')}
-            className="flex items-center gap-2.5 shrink-0"
+          <a href="#hero" onClick={(e) => go(e, '#hero')}
+            className="flex items-center gap-2 shrink-0"
             aria-label="PiP Blocks home">
             <img src="/logo_mark.png" alt="" aria-hidden="true"
               className="w-8 h-8 object-contain" />
@@ -52,7 +55,7 @@ export const Navbar: React.FC = () => {
               <div className="text-[14px] font-bold tracking-tight text-pip-charcoal leading-none">
                 PiP Blocks
               </div>
-              <div className="pip-label mt-[3px] leading-none">
+              <div className="pip-label mt-[3px] leading-none hidden sm:block">
                 Forex Trading Academy
               </div>
             </div>
@@ -61,7 +64,7 @@ export const Navbar: React.FC = () => {
           {/* Desktop nav */}
           <nav aria-label="Primary" className="hidden lg:flex items-center gap-7">
             {NAV.map(l => (
-              <a key={l.name} href={l.href} onClick={e => go(e, l.href)}
+              <a key={l.name} href={l.href} onClick={(e) => go(e, l.href)}
                 className="text-[13px] font-medium text-pip-mid hover:text-pip-charcoal transition-colors duration-150">
                 {l.name}
               </a>
@@ -75,44 +78,66 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Mobile toggle */}
-          <button type="button" aria-label="Toggle navigation"
+          <button type="button" aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen(v => !v)}
-            className="lg:hidden w-7 h-5 flex flex-col justify-between shrink-0">
-            <span className={`block w-full h-[1.5px] bg-pip-charcoal origin-center transition-transform duration-200 ${mobileOpen ? 'translate-y-[9px] rotate-45' : ''}`} />
-            <span className={`block h-[1.5px] bg-pip-charcoal transition-all duration-200 ${mobileOpen ? 'opacity-0 w-0' : 'w-full'}`} />
-            <span className={`block w-full h-[1.5px] bg-pip-charcoal origin-center transition-transform duration-200 ${mobileOpen ? '-translate-y-[9px] -rotate-45' : ''}`} />
+            className="lg:hidden w-8 h-8 flex items-center justify-center shrink-0 -mr-1">
+            {mobileOpen ? (
+              /* X close icon */
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-pip-charcoal">
+                <line x1="4" y1="4" x2="16" y2="16" />
+                <line x1="16" y1="4" x2="4" y2="16" />
+              </svg>
+            ) : (
+              /* Hamburger icon */
+              <div className="w-6 h-4 flex flex-col justify-between">
+                <span className="block w-full h-[1.5px] bg-pip-charcoal" />
+                <span className="block w-full h-[1.5px] bg-pip-charcoal" />
+                <span className="block w-full h-[1.5px] bg-pip-charcoal" />
+              </div>
+            )}
           </button>
 
         </div>
       </header>
 
-      {/* Mobile menu */}
-      <div aria-hidden={!mobileOpen}
-        className={`fixed inset-0 z-40 bg-white flex flex-col transition-opacity duration-200 ${
-          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}>
-        <div className="pt-[68px] flex flex-col h-full overflow-y-auto px-5">
-          <nav className="flex flex-col divide-y divide-pip-border">
-            {NAV.map(l => (
-              <a key={l.name} href={l.href} onClick={e => go(e, l.href)}
-                className="py-5 text-[21px] font-semibold tracking-tight text-pip-charcoal hover:text-pip-red transition-colors">
-                {l.name}
+      {/* Mobile menu overlay */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-white flex flex-col"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+        >
+          {/* Spacer for fixed header */}
+          <div className="pt-[62px]" />
+
+          <div className="flex flex-col h-full overflow-y-auto px-5">
+            <nav className="flex flex-col divide-y divide-pip-border" aria-label="Mobile navigation">
+              {NAV.map(l => (
+                <button
+                  key={l.name}
+                  type="button"
+                  onClick={(e) => go(e, l.href)}
+                  className="py-5 text-left text-[20px] font-semibold tracking-tight text-pip-charcoal hover:text-pip-red transition-colors"
+                >
+                  {l.name}
+                </button>
+              ))}
+            </nav>
+            <div className="mt-7">
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="btn-primary w-full justify-center text-[12px]">
+                Join Community
               </a>
-            ))}
-          </nav>
-          <div className="mt-7">
-            <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
-              onClick={() => setMobileOpen(false)}
-              className="btn-primary w-full justify-center text-[12px]">
-              Join Community
-            </a>
+            </div>
+            <p className="mt-auto pb-6 pt-8 text-[11px] text-pip-muted">
+              © 2026 PiP Blocks Forex Trading Academy
+            </p>
           </div>
-          <p className="mt-auto pb-6 pt-8 text-[11px] text-pip-muted">
-            © 2026 PiP Blocks Forex Trading Academy
-          </p>
         </div>
-      </div>
+      )}
     </>
   );
 };

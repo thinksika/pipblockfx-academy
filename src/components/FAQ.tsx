@@ -36,7 +36,7 @@ export const FAQ: React.FC = () => {
 
   return (
     <section id="faq" aria-label="Frequently asked questions" className="bg-white border-b border-pip-border">
-      <div className="max-w-site mx-auto px-5 sm:px-8">
+      <div className="max-w-site mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
 
         {/* Label */}
         <div className="py-5 border-b border-pip-border">

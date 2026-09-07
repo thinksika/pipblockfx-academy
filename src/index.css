@@ -19,7 +19,7 @@
     color: #171717;
     font-family: Inter, system-ui, sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
+    /* No overflow-x: hidden — layout issues fixed properly */
   }
 
   ::selection { background: #E53514; color: #fff; }
@@ -30,7 +30,7 @@
     border-radius: 2px;
   }
 
-  img { max-width: 100%; display: block; }
+  img { max-width: 100%; display: block; height: auto; }
 }
 
 /* ── Design-system utilities ──────────────────────────────────────────── */
@@ -48,6 +48,7 @@
   .btn-primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: #171717;
     color: #FFFFFF;
@@ -59,7 +60,9 @@
     cursor: pointer;
     transition: background 0.18s ease;
     border: 1.5px solid #171717;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
   }
   .btn-primary:hover { background: #E53514; border-color: #E53514; }
 
@@ -67,6 +70,7 @@
   .btn-ghost {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: transparent;
     color: #171717;
@@ -78,7 +82,9 @@
     cursor: pointer;
     border: 1.5px solid #CCCCCA;
     transition: border-color 0.18s ease, color 0.18s ease;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
   }
   .btn-ghost:hover { border-color: #171717; color: #171717; }
 
@@ -97,7 +103,8 @@
     cursor: pointer;
     border: 1.5px solid #FFFFFF;
     transition: background 0.18s ease, color 0.18s ease;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
   }
   .btn-white:hover { background: #E53514; border-color: #E53514; color: #FFFFFF; }
 
@@ -116,7 +123,8 @@
     cursor: pointer;
     border: 1.5px solid rgba(255,255,255,0.2);
     transition: border-color 0.18s ease, color 0.18s ease;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
   }
   .btn-ghost-dark:hover { border-color: rgba(255,255,255,0.6); color: #FFFFFF; }
 
@@ -133,6 +141,18 @@
   }
   .arrow-link .arr { transition: transform 0.15s ease; }
   .arrow-link:hover .arr { transform: translateX(4px); }
+}
+
+/* ── Mobile-specific responsive overrides ─────────────────────────────── */
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-ghost,
+  .btn-white,
+  .btn-ghost-dark {
+    padding: 12px 16px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
 }
 
 /* Scrollbar */
