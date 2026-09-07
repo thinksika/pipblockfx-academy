@@ -72,8 +72,12 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <a href={TELEGRAM_COMMUNITY_URL} target="_blank" rel="noopener noreferrer"
-            className="btn-primary hidden lg:inline-flex text-[11px]">
+          <a
+            href={TELEGRAM_COMMUNITY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:inline-flex items-center justify-center bg-pip-charcoal hover:bg-pip-red text-white text-[11px] font-semibold tracking-[0.1em] uppercase px-[18px] py-[9px] rounded-[8px] border border-pip-charcoal hover:border-pip-red transition-colors duration-180"
+          >
             Join Community
           </a>
 
@@ -126,9 +130,13 @@ export const Navbar: React.FC = () => {
               ))}
             </nav>
             <div className="mt-7">
-              <a href={TELEGRAM_COMMUNITY_URL} target="_blank" rel="noopener noreferrer"
+              <a
+                href={TELEGRAM_COMMUNITY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
-                className="btn-primary w-full justify-center text-[12px]">
+                className="btn-primary w-full justify-center text-[12px] rounded-[8px]"
+              >
                 Join Community
               </a>
             </div>
