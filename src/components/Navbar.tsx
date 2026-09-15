@@ -1,152 +1,125 @@
 import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { TELEGRAM_COMMUNITY_URL } from '../data/siteData';
 
 const NAV = [
-  { name: 'About',      href: '#about'      },
-  { name: 'Services',   href: '#services'   },
-  { name: 'Mentorship', href: '#mentorship' },
-  { name: 'Bootcamp',   href: '#bootcamp'   },
-  { name: 'Community',  href: '#community'  },
-  { name: 'Connect',    href: '#connect'    },
-  { name: 'FAQ',        href: '#faq'        },
+  { label: 'Home',       to: '/' },
+  { label: 'About',      to: '/about' },
+  { label: 'Mentorship', to: '/mentorship' },
+  { label: 'Programs',   to: '/programs' },
+  { label: 'Community',  to: '/community' },
 ];
 
 export const Navbar: React.FC = () => {
-  const [scrolled, setScrolled]     = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen]       = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 28);
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
+    const h = () => setScrolled(window.scrollY > 8);
+    window.addEventListener('scroll', h, { passive: true });
+    return () => window.removeEventListener('scroll', h);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [mobileOpen]);
+  }, [open]);
 
-  const go = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) => {
-    e.preventDefault();
-    setMobileOpen(false);
-    // Small delay to allow menu close animation
-    setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    `text-[11px] font-semibold tracking-[0.12em] uppercase transition-colors ${
+      isActive ? 'text-[#E53514]' : 'text-[#555] hover:text-[#171717]'
+    }`;
 
   return (
     <>
+      {/* Bar */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 bg-white transition-all duration-200 ${
-          scrolled
-            ? 'border-b border-pip-border shadow-[0_1px_6px_rgba(0,0,0,0.07)] py-3'
-            : 'border-b border-pip-border py-[14px]'
+        className={`fixed top-0 inset-x-0 z-50 bg-white border-b border-[#E5E5E3] transition-shadow duration-200 ${
+          scrolled ? 'shadow-sm' : ''
         }`}
       >
-        <div className="max-w-site mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
+        <div className="max-w-[1380px] mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
 
-          {/* Brand */}
-          <a href="#hero" onClick={(e) => go(e, '#hero')}
-            className="flex items-center gap-2 shrink-0"
-            aria-label="PiP Blocks home">
-            <img src="/logo_mark.png" alt="" aria-hidden="true"
-              className="w-8 h-8 object-contain" />
-            <div className="leading-none">
-              <div className="text-[14px] font-bold tracking-tight text-pip-charcoal leading-none">
-                PiP Blocks
-              </div>
-              <div className="pip-label mt-[3px] leading-none hidden sm:block">
-                Forex Trading Academy
-              </div>
-            </div>
-          </a>
+          {/* Logo */}
+          <Link to="/" onClick={() => setOpen(false)} className="shrink-0">
+            <img
+              src="/logo_pip.jpg"
+              alt="PiP Block Forex Trading Academy"
+              className="h-8 w-auto object-contain"
+            />
+          </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Primary" className="hidden lg:flex items-center gap-7">
+          <nav className="hidden lg:flex items-center gap-8" aria-label="Main">
             {NAV.map(l => (
-              <a key={l.name} href={l.href} onClick={(e) => go(e, l.href)}
-                className="text-[13px] font-medium text-pip-mid hover:text-pip-charcoal transition-colors duration-150">
-                {l.name}
-              </a>
+              <NavLink key={l.to} to={l.to} end={l.to === '/'} className={linkClass}>
+                {l.label}
+              </NavLink>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <a
-            href={TELEGRAM_COMMUNITY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden lg:inline-flex items-center justify-center bg-pip-charcoal hover:bg-pip-red text-white text-[11px] font-semibold tracking-[0.1em] uppercase px-[18px] py-[9px] rounded-[8px] border border-pip-charcoal hover:border-pip-red transition-colors duration-180"
-          >
-            Join Community
-          </a>
-
-          {/* Mobile toggle */}
-          <button type="button" aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen(v => !v)}
-            className="lg:hidden w-8 h-8 flex items-center justify-center shrink-0 -mr-1">
-            {mobileOpen ? (
-              /* X close icon */
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" className="text-pip-charcoal">
-                <line x1="4" y1="4" x2="16" y2="16" />
-                <line x1="16" y1="4" x2="4" y2="16" />
-              </svg>
-            ) : (
-              /* Hamburger icon */
-              <div className="w-6 h-4 flex flex-col justify-between">
-                <span className="block w-full h-[1.5px] bg-pip-charcoal" />
-                <span className="block w-full h-[1.5px] bg-pip-charcoal" />
-                <span className="block w-full h-[1.5px] bg-pip-charcoal" />
-              </div>
-            )}
-          </button>
-
+          {/* CTA + hamburger */}
+          <div className="flex items-center gap-3">
+            <a
+              href={TELEGRAM_COMMUNITY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex btn-dark text-[11px] py-2.5 px-5"
+            >
+              Join Community
+            </a>
+            <button
+              type="button"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              onClick={() => setOpen(v => !v)}
+              className="lg:hidden flex flex-col justify-center gap-[5px] w-9 h-9"
+            >
+              <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
+              <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? 'opacity-0' : ''}`} />
+              <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-white flex flex-col"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation"
-        >
-          {/* Spacer for fixed header */}
-          <div className="pt-[62px]" />
-
-          <div className="flex flex-col h-full overflow-y-auto px-5">
-            <nav className="flex flex-col divide-y divide-pip-border" aria-label="Mobile navigation">
-              {NAV.map(l => (
-                <button
-                  key={l.name}
-                  type="button"
-                  onClick={(e) => go(e, l.href)}
-                  className="py-5 text-left text-[20px] font-semibold tracking-tight text-pip-charcoal hover:text-pip-red transition-colors"
-                >
-                  {l.name}
-                </button>
-              ))}
-            </nav>
-            <div className="mt-7">
-              <a
-                href={TELEGRAM_COMMUNITY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                className="btn-primary w-full justify-center text-[12px] rounded-[8px]"
-              >
-                Join Community
-              </a>
-            </div>
-            <p className="mt-auto pb-6 pt-8 text-[11px] text-pip-muted">
-              © 2026 PiP Blocks Forex Trading Academy
-            </p>
+      {/* Mobile drawer */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        className={`fixed inset-0 z-40 bg-white flex flex-col pt-16 lg:hidden transition-opacity duration-200 ${
+          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <nav className="flex-1 overflow-y-auto px-5 pt-2 pb-10">
+          {NAV.map(l => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end={l.to === '/'}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center justify-between py-5 border-b border-[#E5E5E3] text-[17px] font-semibold ${
+                  isActive ? 'text-[#E53514]' : 'text-[#171717]'
+                }`
+              }
+            >
+              {l.label}
+              <span className="text-[#ccc] text-sm">→</span>
+            </NavLink>
+          ))}
+          <div className="mt-8">
+            <a
+              href={TELEGRAM_COMMUNITY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="btn-dark w-full py-4 text-[13px]"
+            >
+              Join Community →
+            </a>
           </div>
-        </div>
-      )}
+        </nav>
+      </div>
     </>
   );
 };

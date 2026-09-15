@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   TELEGRAM_COMMUNITY_URL,
   TELEGRAM_DIRECT_URL,
@@ -6,114 +7,86 @@ import {
   YOUTUBE_URL,
   TIKTOK_URL,
   BROKER_URL,
-  INSTAGRAM_URL,
-  FACEBOOK_URL,
 } from '../data/siteData';
 
-const NAV_LINKS = [
-  { name: 'About',      href: '#about'      },
-  { name: 'Services',   href: '#services'   },
-  { name: 'Mentorship', href: '#mentorship' },
-  { name: 'Bootcamp',   href: '#bootcamp'   },
-  { name: 'Community',  href: '#community'  },
-  { name: 'Connect',    href: '#connect'    },
-  { name: 'FAQ',        href: '#faq'        },
+const NAV = [
+  { label: 'Home',       to: '/' },
+  { label: 'About',      to: '/about' },
+  { label: 'Mentorship', to: '/mentorship' },
+  { label: 'Programs',   to: '/programs' },
+  { label: 'Community',  to: '/community' },
 ];
 
-const SOCIAL_LINKS = [
-  { name: 'Telegram Community', href: TELEGRAM_COMMUNITY_URL, active: true },
-  { name: 'Message Telegram',   href: TELEGRAM_DIRECT_URL,    active: true },
-  { name: 'WhatsApp',          href: WHATSAPP_URL,           active: true },
-  { name: 'YouTube',           href: YOUTUBE_URL,            active: true },
-  { name: 'TikTok',            href: TIKTOK_URL,             active: true },
-  { name: 'Recommended Broker',href: BROKER_URL,             active: true },
-  { name: 'Instagram',         href: INSTAGRAM_URL,          active: true },
-  { name: 'Facebook',          href: FACEBOOK_URL,           active: true },
+const SOCIALS = [
+  { label: 'Telegram Community', href: TELEGRAM_COMMUNITY_URL },
+  { label: 'WhatsApp',           href: WHATSAPP_URL },
+  { label: 'YouTube',            href: YOUTUBE_URL },
+  { label: 'TikTok',             href: TIKTOK_URL },
+  { label: 'Direct Telegram',    href: TELEGRAM_DIRECT_URL },
+  { label: 'Broker (Affiliate)',  href: BROKER_URL },
 ];
 
-export const Footer: React.FC = () => {
-  const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-  };
+export const Footer: React.FC = () => (
+  <footer className="bg-[#F7F7F5] border-t border-[#E5E5E3]">
+    <div className="max-w-[1380px] mx-auto px-5 sm:px-8">
 
-  return (
-    <footer className="bg-white border-t border-pip-border">
-      <div className="max-w-site mx-auto px-5 sm:px-8">
+      {/* Main row */}
+      <div className="py-10 grid grid-cols-1 sm:grid-cols-3 gap-10 border-b border-[#E5E5E3]">
 
-        {/* Main grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 py-12 border-b border-pip-border">
-
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2.5 mb-3">
-              <img src="/logo_mark.png" alt="" aria-hidden="true" className="w-7 h-7 object-contain" />
-              <div className="leading-none">
-                <div className="text-[13.5px] font-bold text-pip-charcoal tracking-tight">PiP Blocks</div>
-                <div className="pip-label mt-[3px]" style={{ fontSize: '9px' }}>Forex Trading Academy</div>
-              </div>
-            </div>
-            <p className="text-[12px] text-pip-muted leading-[1.65] mt-4 max-w-[210px]">
-              Forex community · Mentorship · Market Analysis · Trading Ideas
-            </p>
-          </div>
-
-          {/* Navigation */}
-          <div>
-            <div className="pip-label mb-4">Navigate</div>
-            <ul className="space-y-2.5">
-              {NAV_LINKS.map(l => (
-                <li key={l.name}>
-                  <a
-                    href={l.href}
-                    onClick={e => go(e, l.href)}
-                    className="text-[13px] text-pip-mid hover:text-pip-red transition-colors duration-150"
-                  >
-                    {l.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <div className="pip-label mb-4">Connect</div>
-            <ul className="space-y-2.5">
-              {SOCIAL_LINKS.map(l => (
-                <li key={l.name}>
-                  {l.active && l.href ? (
-                    <a
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[13px] text-pip-mid hover:text-pip-red transition-colors duration-150"
-                    >
-                      {l.name}
-                    </a>
-                  ) : (
-                    <span className="text-[13px] text-pip-muted/40">{l.name} — Coming Soon</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Bottom */}
-        <div className="py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-[11px] text-pip-muted leading-[1.65] max-w-xl">
-            PiP Blocks Forex Trading Academy provides educational content and
-            market-related information. Nothing on this website constitutes
-            personalised financial advice. Trading financial markets involves risk.
-          </p>
-          <p className="text-[11px] text-pip-muted shrink-0">
-            © 2026 PiP Blocks Forex Trading Academy
+        {/* Brand */}
+        <div>
+          <Link to="/" className="inline-block mb-3">
+            <img src="/logo_pip.jpg" alt="PiP Block Forex" className="h-8 w-auto object-contain" />
+          </Link>
+          <p className="text-[14px] text-[#555] leading-relaxed max-w-[200px]">
+            Forex Trading Academy.<br />Structure. Discipline.
           </p>
         </div>
 
+        {/* Pages */}
+        <div>
+          <p className="pip-label mb-4">Pages</p>
+          <ul className="space-y-2.5">
+            {NAV.map(l => (
+              <li key={l.to}>
+                <Link to={l.to} className="text-[14px] text-[#555] hover:text-[#E53514] transition-colors">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Links */}
+        <div>
+          <p className="pip-label mb-4">Connect</p>
+          <ul className="space-y-2.5">
+            {SOCIALS.map(s => (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[14px] text-[#555] hover:text-[#E53514] transition-colors"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </footer>
-  );
-};
+
+      {/* Bottom */}
+      <div className="py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <p className="text-[12px] text-[#666] leading-relaxed max-w-lg">
+          © {new Date().getFullYear()} PiP Block Forex Trading Academy · Educational content only ·
+          Not personalised financial advice · Trading involves risk of loss · Ghana 🇬🇭
+        </p>
+        <span className="text-[11px] text-[#bbb] uppercase tracking-widest shrink-0">
+          PIPBLOCKFX
+        </span>
+      </div>
+    </div>
+  </footer>
+);

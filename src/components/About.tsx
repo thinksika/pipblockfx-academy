@@ -1,61 +1,86 @@
 import React from 'react';
+import { ImagePlaceholder } from './ImagePlaceholder';
 
 export const About: React.FC = () => (
   <section id="about" aria-label="About PiP Blocks" className="bg-white border-b border-pip-border">
     <div className="max-w-site mx-auto px-5 sm:px-8">
 
-      {/* Label strip */}
+      {/* Section label row */}
       <div className="py-5 border-b border-pip-border">
-        <span className="pip-label">01 — About PiP Blocks</span>
+        <span className="pip-label">01 — About</span>
       </div>
 
-      {/* Editorial two-column */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 py-14 lg:py-20">
+      {/* Content grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 pt-10 pb-14 sm:pt-14 sm:pb-16 gap-10 lg:gap-0">
 
-        {/* Left — heading */}
-        <div className="lg:col-span-5 lg:pr-16 lg:border-r lg:border-pip-border mb-8 lg:mb-0">
+        {/* Left — Heading */}
+        <div className="lg:col-span-5 lg:pr-10 lg:border-r lg:border-pip-border">
           <h2
             className="font-display font-extrabold text-pip-charcoal"
             style={{
-              fontSize: 'clamp(1.8rem, 2.7vw, 2.6rem)',
-              lineHeight: '1.07',
+              fontSize: 'clamp(1.7rem, 3vw, 2.6rem)',
+              lineHeight: '1.09',
               letterSpacing: '-0.025em',
             }}
           >
-            BUILT AROUND
-            <br />THE MARKET.
+            Structure. Discipline.{' '}
+            <span className="text-pip-red">Results.</span>
           </h2>
         </div>
 
-        {/* Right — body */}
-        <div className="lg:col-span-7 lg:pl-16 flex flex-col justify-center">
-          <p className="text-[15.5px] text-pip-mid leading-[1.75] mb-5">
-            PiP Blocks Forex Trading Academy is a growing forex trading community
-            built around market analysis, mentorship, shared trading ideas and
-            practical development.
-          </p>
-          <p className="text-[15.5px] text-pip-mid leading-[1.75]">
-            Our goal is to create an environment where traders can engage with
-            the market, develop their understanding and grow with discipline.
-          </p>
+        {/* Right — Copy + Image */}
+        <div className="lg:col-span-7 lg:pl-12">
+          <div className="max-w-xl space-y-4 mb-8">
+            <p className="text-[15px] text-pip-mid leading-[1.75]">
+              PiP Blocks Forex Trading Academy was built on one principle:
+              traders deserve a structured path — not noise. We focus on teaching
+              traders to read markets properly, understand liquidity, and
+              develop the psychological discipline that separates consistent
+              traders from the crowd.
+            </p>
+            <p className="text-[15px] text-pip-mid leading-[1.75]">
+              Through our mentorship program, community, bootcamps and
+              market analysis, we work with traders at every level — from
+              those just starting out to active traders refining their edge.
+            </p>
+          </div>
+
+          {/* Quick facts strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 border border-pip-border">
+            {[
+              { val: '1,400+', lbl: 'Community Members' },
+              { val: 'FOREX', lbl: 'Primary Market' },
+              { val: 'ACTIVE', lbl: 'Community Status' },
+              { val: 'OPEN', lbl: 'Enrolment' },
+            ].map((s, i) => (
+              <div
+                key={i}
+                className="p-4 text-center border-r border-pip-border last:border-r-0 border-b sm:border-b-0"
+              >
+                <div
+                  className="font-display font-extrabold text-pip-charcoal mb-0.5"
+                  style={{ fontSize: 'clamp(1rem, 2vw, 1.3rem)', letterSpacing: '-0.02em' }}
+                >
+                  {s.val}
+                </div>
+                <div className="pip-label" style={{ fontSize: '9px' }}>{s.lbl}</div>
+              </div>
+            ))}
+          </div>
+
+          {/*
+           * ABOUT IMAGE PLACEHOLDER — Replace when real image is available
+           * Suggested: A screenshot or photo of PiP Blocks platform, team, or community snapshot.
+           */}
+          <div className="mt-8">
+            <ImagePlaceholder
+              label="ABOUT_IMAGE — Replace with PiP Blocks team or community photo"
+              aspectRatio="16/7"
+            />
+          </div>
         </div>
 
       </div>
-
-      {/* Metadata strip */}
-      <div className="border-t border-pip-border py-5 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-0 sm:divide-x sm:divide-pip-border">
-        {[
-          { l: 'Community Focus', v: 'Forex Markets'          },
-          { l: 'Primary Channel', v: 'Telegram — @pipblcksfxhuz' },
-          { l: 'Core Mission',    v: 'Education & Development' },
-        ].map(item => (
-          <div key={item.l} className="sm:px-7 first:pl-0 last:pr-0">
-            <div className="pip-label mb-1">{item.l}</div>
-            <div className="text-[13.5px] font-semibold text-pip-charcoal">{item.v}</div>
-          </div>
-        ))}
-      </div>
-
     </div>
   </section>
 );

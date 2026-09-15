@@ -1,242 +1,138 @@
 import React from 'react';
 import { TELEGRAM_DIRECT_URL, WHATSAPP_URL } from '../data/siteData';
 
-/* ── Syllabus data from the supplied class document ─────────────────── */
 const MODULES = [
-  {
-    num:   '00',
-    title: 'Introduction',
-    items: [
-      'Introduction to Forex Trading',
-      'Platform Setup & Chart Basics',
-      'Trading Mindset Introduction',
-    ],
-  },
-  {
-    num:   '01',
-    title: 'Market Structure',
-    items: [
-      'Market Structure',
-      'Valid BOS (EEC/SMC)',
-      'Range Concept',
-      'SNR (Support & Resistance) Basics',
-      'Market Pricing',
-    ],
-  },
-  {
-    num:   '02',
-    title: 'Storyline & Zones',
-    items: [
-      'Storyline',
-      'Zone Selection (SMC/EEC)',
-      'Types of EG',
-      'SNR Significant',
-    ],
-  },
-  {
-    num:   '03',
-    title: 'Liquidity',
-    items: [
-      'Liquidity Concept',
-      'Money Transfer',
-    ],
-  },
-  {
-    num:   '04',
-    title: 'Entry Models',
-    items: [
-      'SNR Trendlines',
-      'TL Kiss (Trendline Kiss)',
-      'TL Logics',
-      'Entry Model',
-    ],
-  },
-  {
-    num:   '05',
-    title: 'Development & Management',
-    items: [
-      'Risk / Trade Management',
-      'Trading Psychology',
-      'Backtesting & Journaling',
-      'Building a Trading Routine',
-      'Review & Continuous Improvement',
-    ],
-  },
-];
-
-const MERITS = [
-  'Access to prerecorded classes on private Telegram group',
-  'Weekly market outlook',
-  'PDF books on trading for better understanding',
+  { n: '01', title: 'Introduction to Forex', items: ['How forex markets work', 'Currency pairs & terminology', 'Market sessions & timing'] },
+  { n: '02', title: 'Market Structure', items: ['Identifying trends', 'Break of structure (BOS)', 'Change of character (CHOCH)'] },
+  { n: '03', title: 'Storyline & Zone Selection', items: ['Reading chart narratives', 'Fair value gaps', 'Order blocks'] },
+  { n: '04', title: 'Liquidity Concepts', items: ['Buy/sell-side liquidity', 'Liquidity sweeps', 'Inducement setups'] },
+  { n: '05', title: 'Entry Models', items: ['SNR entries', 'Trendline kiss', 'Confirmation model'] },
+  { n: '06', title: 'Development & Management', items: ['Risk management', 'Trading psychology', 'Backtesting routine'] },
 ];
 
 export const Mentorship: React.FC = () => (
-  <section id="mentorship" aria-label="Mentorship program" className="bg-white border-b border-pip-border">
+  <section id="mentorship" aria-label="PiP Blocks Mentorship Program" className="bg-white border-b border-pip-border">
     <div className="max-w-site mx-auto px-5 sm:px-8">
 
-      {/* ── Label ───────────────────────────────────────────────────────── */}
+      {/* Label row */}
       <div className="py-5 border-b border-pip-border">
-        <span className="pip-label">03 — Mentorship</span>
+        <span className="pip-label">07 — Mentorship Program</span>
       </div>
 
-      {/* ── Header: heading left, price right ──────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 py-12 sm:py-16 border-b border-pip-border">
+      <div className="grid grid-cols-1 lg:grid-cols-12 pt-10 pb-14 sm:pt-12 sm:pb-16 gap-10 lg:gap-0">
 
-        <div>
+        {/* Left — Curriculum */}
+        <div className="lg:col-span-7 lg:pr-12 lg:border-r lg:border-pip-border">
           <h2
-            className="font-display font-extrabold text-pip-charcoal mb-5"
+            className="font-display font-extrabold text-pip-charcoal mb-2"
             style={{
-              fontSize: 'clamp(2rem, 3.2vw, 3.1rem)',
-              lineHeight: '1.06',
-              letterSpacing: '-0.028em',
+              fontSize: 'clamp(1.55rem, 2.8vw, 2.4rem)',
+              lineHeight: '1.1',
+              letterSpacing: '-0.025em',
             }}
           >
-            BUILD YOUR
-            <br />TRADING PROCESS.
+            The PiP Blocks{' '}
+            <span className="text-pip-red">Mentorship.</span>
           </h2>
-          <p className="text-[15.5px] text-pip-mid leading-[1.72] max-w-md">
-            Our mentorship program is designed around practical forex education,
-            market understanding and the development of a structured trading process.
+
+          <p className="text-[14.5px] text-pip-mid leading-[1.75] mb-8 max-w-lg">
+            A practical, structured forex mentorship program covering six comprehensive modules —
+            from first principles through to advanced concepts, risk management and psychological discipline.
           </p>
+
+          {/* Module grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-pip-border">
+            {MODULES.map((mod, i) => {
+              const hasRightBorder = i % 2 === 0;
+              const isBottomRow = i >= 4;
+              return (
+                <div
+                  key={mod.n}
+                  className={[
+                    'p-5',
+                    hasRightBorder ? 'sm:border-r border-pip-border' : '',
+                    !isBottomRow ? 'border-b border-pip-border' : '',
+                  ].join(' ')}
+                >
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="pip-label" style={{ color: '#E53514', fontSize: '9px' }}>{mod.n}</span>
+                    <span className="text-[13.5px] font-semibold text-pip-charcoal">{mod.title}</span>
+                  </div>
+                  <ul className="space-y-0.5">
+                    {mod.items.map((it) => (
+                      <li key={it} className="text-[12.5px] text-pip-mid flex items-start gap-1.5">
+                        <span className="text-pip-red/50 mt-0.5 text-[10px]">—</span>
+                        {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Price block — editorial, refined right side balance */}
-        <div className="flex flex-col justify-between sm:items-end gap-6">
-          <div className="sm:text-right">
-            <div className="pip-label mb-1.5">Program Fee</div>
+        {/* Right — Pricing + CTA */}
+        <div className="lg:col-span-5 lg:pl-12 flex flex-col justify-center">
+
+          {/* Price card */}
+          <div className="border border-pip-border p-7 mb-6">
+            <div className="pip-label mb-3">Program Fee</div>
             <div
-              className="font-display font-extrabold text-pip-charcoal"
-              style={{
-                fontSize: 'clamp(3.5rem, 5vw, 5.5rem)',
-                lineHeight: '1',
-                letterSpacing: '-0.04em',
-              }}
+              className="font-display font-extrabold text-pip-charcoal mb-1"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', letterSpacing: '-0.04em', lineHeight: '1' }}
             >
               $370
             </div>
-            <p className="text-[11px] text-pip-muted mt-2.5">No refund policy · Terms & conditions apply</p>
-          </div>
-
-          {/* CTA buttons — refined size, 8px rounded corners */}
-          <div className="flex flex-col gap-2.5 sm:items-end w-full sm:w-auto">
-            <a
-              href={TELEGRAM_DIRECT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-pip-charcoal hover:bg-pip-red text-white text-[11.5px] font-semibold tracking-[0.09em] uppercase py-[10px] px-[20px] rounded-[8px] border border-pip-charcoal hover:border-pip-red transition-all duration-180 w-full sm:w-auto text-center"
-              aria-label="Enquire about mentorship on Telegram"
-            >
-              Enquire About Mentorship →
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-transparent hover:border-pip-charcoal text-pip-charcoal text-[11.5px] font-semibold tracking-[0.09em] uppercase py-[9.5px] px-[20px] rounded-[8px] border border-[#CCCCCA] transition-all duration-180 w-full sm:w-auto text-center"
-              aria-label="Chat about mentorship on WhatsApp"
-            >
-              Chat on WhatsApp →
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      {/* ── Program details strip ───────────────────────────────────────── */}
-      <div className="py-6 border-b border-pip-border grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-0 sm:divide-x sm:divide-pip-border">
-        {[
-          { l: 'Venue',    v: 'Zoom Meeting' },
-          { l: 'Duration', v: 'Lifetime'     },
-          { l: 'Format',   v: 'Live + Pre-recorded' },
-          { l: 'Access',   v: 'Private Telegram Group' },
-        ].map(item => (
-          <div key={item.l} className="sm:px-7 first:pl-0 last:pr-0">
-            <div className="pip-label mb-1">{item.l}</div>
-            <div className="text-[13.5px] font-semibold text-pip-charcoal">{item.v}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Syllabus heading ──────────────────────────────────────────────── */}
-      <div className="pt-12 pb-8">
-        <h3
-          className="font-display font-extrabold text-pip-charcoal"
-          style={{
-            fontSize: 'clamp(1.2rem, 2vw, 1.75rem)',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          WHAT YOU'LL COVER
-        </h3>
-      </div>
-
-      {/* ── Module grid — 2 columns on desktop, 1 on mobile ──────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-pip-border mb-12">
-        {MODULES.map((mod, idx) => (
-          <div
-            key={mod.num}
-            className={`py-8 border-b border-pip-border ${
-              /* right column items get a left border on desktop */
-              idx % 2 === 1 ? 'md:pl-10 md:border-l md:border-pip-border' : 'md:pr-10'
-            }`}
-          >
-            {/* Module label */}
-            <div className="flex items-baseline gap-3 mb-4">
-              <span
-                className="font-mono font-bold"
-                style={{ fontSize: '11px', color: '#E53514', letterSpacing: '0.08em' }}
-              >
-                MODULE {mod.num}
-              </span>
-              <span
-                className="font-bold text-pip-charcoal uppercase tracking-wider"
-                style={{ fontSize: '11.5px', letterSpacing: '0.07em' }}
-              >
-                {mod.title}
-              </span>
+            <div className="pip-label mb-5" style={{ fontSize: '9px' }}>
+              One-time payment · No refund policy
             </div>
 
-            {/* Topics */}
-            <ul className="space-y-2">
-              {mod.items.map(item => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-[7px] w-1 h-1 rounded-full bg-pip-border-md shrink-0" aria-hidden="true" />
-                  <span className="text-[14px] text-pip-mid leading-snug">{item}</span>
-                </li>
+            <div className="space-y-2 mb-6 border-t border-pip-border pt-5">
+              {[
+                '6 structured modules',
+                'Advanced market structure & liquidity',
+                'Personal entry models',
+                'Risk management & psychology',
+                'Backtesting guidance',
+              ].map((f) => (
+                <div key={f} className="flex items-center gap-2 text-[13px] text-pip-mid">
+                  <span className="w-1.5 h-1.5 bg-pip-red rounded-full shrink-0" aria-hidden="true" />
+                  {f}
+                </div>
               ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+            </div>
 
-      {/* ── Merits / What's included ──────────────────────────────────────── */}
-      <div className="border-t border-pip-border py-8 mb-0">
-        <div className="grid grid-cols-1 sm:grid-cols-12 gap-6">
-          <div className="sm:col-span-3">
-            <div className="pip-label mb-2">What's Included</div>
+            <div className="flex flex-col gap-3">
+              <a
+                href={TELEGRAM_DIRECT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-pip-charcoal hover:bg-pip-red text-white text-[11.5px] font-semibold tracking-[0.1em] uppercase py-[11px] px-[22px] rounded-[8px] border border-pip-charcoal hover:border-pip-red transition-all duration-200 text-center"
+                aria-label="Enquire about PiP Blocks mentorship on Telegram"
+              >
+                Enquire About Mentorship →
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-transparent text-pip-charcoal hover:text-pip-charcoal text-[11.5px] font-semibold tracking-[0.1em] uppercase py-[10.5px] px-[22px] rounded-[8px] border border-[#CCCCCA] hover:border-pip-charcoal transition-all duration-200 text-center"
+                aria-label="Chat about mentorship on WhatsApp"
+              >
+                Chat on WhatsApp →
+              </a>
+            </div>
           </div>
-          <div className="sm:col-span-9">
-            <ul className="space-y-3">
-              {MERITS.map(m => (
-                <li key={m} className="flex items-start gap-3">
-                  <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-pip-red shrink-0" aria-hidden="true" />
-                  <span className="text-[14.5px] text-pip-mid leading-snug">{m}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+
+          {/* Disclaimer */}
+          <p className="text-[11px] text-pip-muted border-l-2 border-pip-border pl-3 leading-relaxed">
+            All mentorship enquiries are handled directly by the PiP Blocks team.
+            Please read the full terms before enrolling. No refund policy applies.
+          </p>
         </div>
-      </div>
 
-      {/* ── Bottom disclaimer ─────────────────────────────────────────────── */}
-      <div className="border-t border-pip-border py-5 pb-8">
-        <p className="text-[11.5px] text-pip-muted leading-relaxed max-w-xl">
-          Mentorship provides educational guidance only. Results will vary based on
-          the individual's effort, market conditions and experience. Past performance
-          is not indicative of future results.
-        </p>
       </div>
-
     </div>
   </section>
 );

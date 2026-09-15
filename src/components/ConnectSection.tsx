@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   TELEGRAM_COMMUNITY_URL,
   TELEGRAM_DIRECT_URL,
@@ -9,138 +9,126 @@ import {
 } from '../data/siteData';
 
 interface ConnectRow {
-  num: string;
+  n: string;
   title: string;
   desc: string;
   buttonText: string;
-  link: string;
+  href: string;
 }
 
-const ROWS: ConnectRow[] = [
+const CONNECT_ROWS: ConnectRow[] = [
   {
-    num: '01',
+    n: '01',
     title: 'TELEGRAM COMMUNITY',
-    desc: 'Join our trading community and stay connected.',
-    buttonText: 'JOIN TELEGRAM',
-    link: TELEGRAM_COMMUNITY_URL,
+    desc: 'Join our trading community and stay connected with daily analysis and updates.',
+    buttonText: 'Join Telegram',
+    href: TELEGRAM_COMMUNITY_URL,
   },
   {
-    num: '02',
+    n: '02',
     title: 'DIRECT TELEGRAM',
-    desc: 'Message the team directly for enquiries.',
-    buttonText: 'MESSAGE US',
-    link: TELEGRAM_DIRECT_URL,
+    desc: 'Message the team directly for mentorship, bootcamp, and general enquiries.',
+    buttonText: 'Message Us',
+    href: TELEGRAM_DIRECT_URL,
   },
   {
-    num: '03',
+    n: '03',
     title: 'WHATSAPP',
-    desc: 'Speak directly with the team.',
-    buttonText: 'CHAT ON WHATSAPP',
-    link: WHATSAPP_URL,
+    desc: 'Speak directly with the PiP Blocks team via WhatsApp.',
+    buttonText: 'Chat on WhatsApp',
+    href: WHATSAPP_URL,
   },
   {
-    num: '04',
+    n: '04',
     title: 'YOUTUBE',
-    desc: 'Watch PiP Blocks content, education and updates.',
-    buttonText: 'WATCH ON YOUTUBE',
-    link: YOUTUBE_URL,
+    desc: 'Watch PiP Blocks content, forex education and community updates.',
+    buttonText: 'Watch on YouTube',
+    href: YOUTUBE_URL,
   },
   {
-    num: '05',
+    n: '05',
     title: 'TIKTOK',
-    desc: 'Follow PIPBLOCKFX for short-form content and updates.',
-    buttonText: 'FOLLOW ON TIKTOK',
-    link: TIKTOK_URL,
+    desc: 'Follow PIPBLOCKFX for short-form content, updates and market ideas.',
+    buttonText: 'Follow on TikTok',
+    href: TIKTOK_URL,
   },
   {
-    num: '06',
-    title: 'BROKER',
-    desc: 'Access our preferred broker.',
-    buttonText: 'OPEN BROKER ACCOUNT',
-    link: BROKER_URL,
+    n: '06',
+    title: 'RECOMMENDED BROKER',
+    desc: 'Trade with IUX Markets — our recommended broker for executing trades.',
+    buttonText: 'Open an Account',
+    href: BROKER_URL,
   },
 ];
 
-export const ConnectSection: React.FC = () => {
-  const [hovered, setHovered] = useState<string | null>(null);
+export const ConnectSection: React.FC = () => (
+  <section id="connect" aria-label="Connect with PiP Blocks" className="bg-white border-b border-pip-border">
+    <div className="max-w-site mx-auto px-5 sm:px-8">
 
-  return (
-    <section id="connect" aria-label="Connect with PiP Blocks" className="bg-white border-b border-pip-border">
-      <div className="max-w-site mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
-
-        {/* Section Label */}
-        <div className="py-5 border-b border-pip-border">
-          <span className="pip-label">10 — Connect</span>
-        </div>
-
-        {/* Section Title */}
-        <div className="py-9 border-b border-pip-border">
-          <h2
-            className="font-display font-extrabold text-pip-charcoal"
-            style={{
-              fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
-              lineHeight: '1.06',
-              letterSpacing: '-0.03em',
-            }}
-          >
-            CONNECT WITH PIP BLOCKS
-          </h2>
-        </div>
-
-        {/* Numbered Row List */}
-        <div>
-          {ROWS.map(row => {
-            const isH = hovered === row.num;
-            return (
-              <a
-                key={row.num}
-                href={row.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={() => setHovered(row.num)}
-                onMouseLeave={() => setHovered(null)}
-                className="block border-b border-pip-border transition-colors duration-150 group"
-                style={{ backgroundColor: isH ? '#F7F7F5' : 'transparent' }}
-                aria-label={`${row.title}: ${row.buttonText}`}
-              >
-                <div className="py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
-
-                  {/* Number 01-06 */}
-                  <span
-                    className="font-mono font-bold shrink-0 transition-colors duration-150 w-7 text-[12px]"
-                    style={{ color: isH ? '#E53514' : '#CCCCCA' }}
-                  >
-                    {row.num}
-                  </span>
-
-                  {/* Title & Description */}
-                  <div className="flex-1 min-w-0">
-                    <div
-                      className="font-bold uppercase mb-1.5 transition-colors duration-150 text-[13px] tracking-[0.08em]"
-                      style={{ color: isH ? '#E53514' : '#171717' }}
-                    >
-                      {row.title}
-                    </div>
-                    <p className="text-pip-mid text-[14px] leading-[1.6]">
-                      {row.desc}
-                    </p>
-                  </div>
-
-                  {/* CTA button / Arrow on the right */}
-                  <div className="shrink-0 flex items-center gap-2 mt-2 sm:mt-0">
-                    <span className="btn-ghost text-[11px] py-2 px-4 rounded-[8px] group-hover:border-pip-charcoal group-hover:text-pip-charcoal transition-colors">
-                      {row.buttonText}
-                      <span className="inline-block transition-transform duration-180 group-hover:translate-x-1" aria-hidden="true">→</span>
-                    </span>
-                  </div>
-
-                </div>
-              </a>
-            );
-          })}
-        </div>
-
+      {/* Label row */}
+      <div className="py-5 border-b border-pip-border">
+        <span className="pip-label">11 — Connect</span>
       </div>
-    </section>
-  );
-};
+
+      {/* Heading */}
+      <div className="pt-10 pb-8 sm:pt-12 border-b border-pip-border">
+        <h2
+          className="font-display font-extrabold text-pip-charcoal"
+          style={{
+            fontSize: 'clamp(1.55rem, 2.8vw, 2.4rem)',
+            lineHeight: '1.1',
+            letterSpacing: '-0.025em',
+          }}
+        >
+          Connect With{' '}
+          <span className="text-pip-red">PiP Blocks.</span>
+        </h2>
+      </div>
+
+      {/* Rows */}
+      <div>
+        {CONNECT_ROWS.map((row) => (
+          <a
+            key={row.n}
+            href={row.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col sm:flex-row sm:items-center gap-4 py-5 border-b border-pip-border hover:bg-pip-surface transition-colors duration-150 -mx-5 sm:-mx-8 px-5 sm:px-8"
+            aria-label={`${row.title} — ${row.desc}`}
+          >
+            {/* Number */}
+            <div className="shrink-0 w-8">
+              <span className="pip-label" style={{ color: '#E53514', fontSize: '9px' }}>{row.n}</span>
+            </div>
+
+            {/* Title */}
+            <div className="shrink-0 sm:w-44">
+              <span
+                className="font-semibold text-pip-charcoal group-hover:text-pip-red transition-colors"
+                style={{ fontSize: '13.5px', letterSpacing: '0.03em' }}
+              >
+                {row.title}
+              </span>
+            </div>
+
+            {/* Desc */}
+            <div className="flex-1 min-w-0">
+              <p className="text-[13.5px] text-pip-mid leading-relaxed">{row.desc}</p>
+            </div>
+
+            {/* Button / Arrow */}
+            <div className="shrink-0">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.09em] text-pip-muted group-hover:text-pip-red transition-colors">
+                {row.buttonText}
+                <span className="inline-block ml-1.5 transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">
+                  →
+                </span>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+);

@@ -9,4 +9,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Required for SPA routing — serve index.html for all routes
+  server: {
+    historyApiFallback: true,
+  },
+  preview: {
+    port: 5173,
+  },
 });

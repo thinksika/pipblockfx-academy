@@ -1,130 +1,156 @@
-import React, { useState } from 'react';
-import { TELEGRAM_COMMUNITY_URL, TELEGRAM_DIRECT_URL } from '../data/siteData';
+import React from 'react';
+import { TELEGRAM_DIRECT_URL, TELEGRAM_COMMUNITY_URL, WHATSAPP_URL } from '../data/siteData';
 
-const scrollTo = (id: string) =>
-  document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-
-interface Row {
-  num:  string;
+interface ServiceRow {
+  n: string;
   title: string;
-  desc:  string;
-  cta:   string;
-  action: () => void;
+  badge: string;
+  desc: string;
+  ctaText: string;
+  href: string;
 }
 
-const ROWS: Row[] = [
+const SERVICES: ServiceRow[] = [
   {
-    num:   '01',
-    title: 'MENTORSHIP',
-    desc:  'Practical guidance focused on forex market structure, liquidity, entries, risk management and trader development.',
-    cta:   'View Mentorship',
-    action: () => scrollTo('#mentorship'),
+    n: '01',
+    title: 'Forex Mentorship',
+    badge: 'GUIDED LEARNING',
+    desc: 'Practical forex mentorship covering market structure, liquidity, entry models, risk management, backtesting and trading psychology.',
+    ctaText: 'Enquire About Mentorship',
+    href: TELEGRAM_DIRECT_URL,
   },
   {
-    num:   '02',
-    title: 'MARKET ANALYSIS',
-    desc:  'Market observations and technical analysis shared through our community.',
-    cta:   'Join Community',
-    action: () => window.open(TELEGRAM_COMMUNITY_URL, '_blank', 'noopener,noreferrer'),
+    n: '02',
+    title: 'Market Analysis',
+    badge: 'DAILY INSIGHTS',
+    desc: 'Regular market observations, technical analysis and trade setups shared through the PiP Blocks community channels.',
+    ctaText: 'Join the Community',
+    href: TELEGRAM_COMMUNITY_URL,
   },
   {
-    num:   '03',
-    title: 'TRADING IDEAS & SIGNALS',
-    desc:  'Trading ideas and signals shared through the PiP Blocks community.',
-    cta:   'Enquire',
-    action: () => window.open(TELEGRAM_DIRECT_URL, '_blank', 'noopener,noreferrer'),
+    n: '03',
+    title: 'Trading Signals',
+    badge: 'COMMUNITY IDEAS',
+    desc: 'Stay connected to shared market ideas and signals from the PiP Blocks trading community in real time.',
+    ctaText: 'Enquire Now',
+    href: TELEGRAM_DIRECT_URL,
   },
   {
-    num:   '04',
-    title: 'BOOTCAMPS',
-    desc:  'Focused practical programs built around trading concepts and guided development.',
-    cta:   'View Bootcamp',
-    action: () => scrollTo('#bootcamp'),
+    n: '04',
+    title: 'Bootcamps',
+    badge: 'INTENSIVE PROGRAM',
+    desc: 'Focused multi-day training programs covering advanced concepts, backtesting, personal entries and risk management.',
+    ctaText: 'View Bootcamp',
+    href: '#bootcamp',
+  },
+  {
+    n: '05',
+    title: 'Trading Community',
+    badge: 'FREE ACCESS',
+    desc: 'Join 1,400+ traders on Telegram. Access shared analysis, trade discussions, education content and community updates.',
+    ctaText: 'Join Telegram',
+    href: TELEGRAM_COMMUNITY_URL,
+  },
+  {
+    n: '06',
+    title: 'Broker Partnership',
+    badge: 'RECOMMENDED BROKER',
+    desc: 'Trade with our recommended broker — IUX Markets. No obligation, no pressure. Just a broker we trust for our own trading.',
+    ctaText: 'Open an Account',
+    href: 'https://iux.com/en/register?code=S9ncfCvV:affiliate',
   },
 ];
 
-export const Services: React.FC = () => {
-  const [hovered, setHovered] = useState<string | null>(null);
+export const Services: React.FC = () => (
+  <section id="services" aria-label="What we offer" className="bg-pip-surface border-b border-pip-border">
+    <div className="max-w-site mx-auto px-5 sm:px-8">
 
-  return (
-    <section id="services" aria-label="Services" className="bg-pip-surface border-b border-pip-border">
-      <div className="max-w-site mx-auto px-5 sm:px-8">
+      {/* Label row */}
+      <div className="py-5 border-b border-pip-border">
+        <span className="pip-label">03 — What We Offer</span>
+      </div>
 
-        {/* Label */}
-        <div className="py-5 border-b border-pip-border">
-          <span className="pip-label">02 — Services</span>
-        </div>
-
-        {/* Heading */}
-        <div className="py-9 border-b border-pip-border">
-          <h2
-            className="font-display font-extrabold text-pip-charcoal"
-            style={{
-              fontSize: 'clamp(1.65rem, 2.5vw, 2.4rem)',
-              lineHeight: '1.08',
-              letterSpacing: '-0.025em',
-            }}
-          >
-            WHAT WE DO
-          </h2>
-        </div>
-
-        {/* Numbered rows with real CTA buttons */}
-        {ROWS.map(row => {
-          const isH = hovered === row.num;
-          return (
-            <div
-              key={row.num}
-              onMouseEnter={() => setHovered(row.num)}
-              onMouseLeave={() => setHovered(null)}
-              className="border-b border-pip-border transition-colors duration-150"
-              style={{ backgroundColor: isH ? '#FFFFFF' : 'transparent' }}
+      {/* Heading */}
+      <div className="pt-10 pb-8 sm:pt-12 border-b border-pip-border">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          <div className="lg:col-span-6">
+            <h2
+              className="font-display font-extrabold text-pip-charcoal"
+              style={{
+                fontSize: 'clamp(1.55rem, 2.8vw, 2.4rem)',
+                lineHeight: '1.1',
+                letterSpacing: '-0.025em',
+              }}
             >
-              <div className="py-6 sm:py-7 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
+              What PiP Blocks{' '}
+              <span className="text-pip-red">Provides.</span>
+            </h2>
+          </div>
+          <div className="lg:col-span-6 lg:pl-10 flex items-end">
+            <p className="text-[14px] text-pip-mid leading-relaxed max-w-md">
+              Education, community and structured programs — each designed to move you
+              forward as a trader.
+            </p>
+          </div>
+        </div>
+      </div>
 
-                {/* Number */}
-                <span
-                  className="font-mono font-bold shrink-0 transition-colors duration-150 w-6"
-                  style={{ fontSize: '12px', color: isH ? '#E53514' : '#CCCCCA' }}
-                >
-                  {row.num}
-                </span>
-
-                {/* Title + desc */}
-                <div className="flex-1 min-w-0">
-                  <div
-                    className="font-bold uppercase mb-2 transition-colors duration-150"
-                    style={{
-                      fontSize: '12.5px',
-                      letterSpacing: '0.08em',
-                      color: isH ? '#E53514' : '#171717',
-                    }}
-                  >
-                    {row.title}
-                  </div>
-                  <p className="text-pip-mid text-[14px] leading-[1.65] max-w-lg">
-                    {row.desc}
-                  </p>
-                </div>
-
-                {/* CTA button — real interactive control */}
-                <div className="shrink-0">
-                  <button
-                    type="button"
-                    onClick={row.action}
-                    className="btn-ghost text-[11px]"
-                    aria-label={row.cta}
-                  >
-                    {row.cta} →
-                  </button>
-                </div>
-
+      {/* Service rows */}
+      <div>
+        {SERVICES.map((s) => {
+          const isExternal = s.href.startsWith('http');
+          return (
+            <a
+              key={s.n}
+              href={s.href}
+              {...(isExternal
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
+              className="group flex flex-col sm:flex-row sm:items-center gap-4 py-6 border-b border-pip-border hover:bg-white transition-colors duration-150 -mx-5 sm:-mx-8 px-5 sm:px-8"
+              aria-label={s.title}
+            >
+              {/* Number */}
+              <div className="shrink-0 w-10">
+                <span className="pip-label" style={{ color: '#E53514', fontSize: '9px' }}>{s.n}</span>
               </div>
-            </div>
+
+              {/* Badge */}
+              <div className="shrink-0 w-36 hidden sm:block">
+                <span className="pip-label">{s.badge}</span>
+              </div>
+
+              {/* Title + desc */}
+              <div className="flex-1 min-w-0">
+                <div
+                  className="font-semibold text-pip-charcoal group-hover:text-pip-red transition-colors mb-1"
+                  style={{ fontSize: '15.5px', letterSpacing: '-0.01em' }}
+                >
+                  {s.title}
+                </div>
+                <p className="text-[13.5px] text-pip-mid leading-relaxed max-w-xl">
+                  {s.desc}
+                </p>
+              </div>
+
+              {/* CTA arrow */}
+              <div className="shrink-0 flex items-center gap-2 sm:pl-6">
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.09em] text-pip-muted group-hover:text-pip-red transition-colors"
+                >
+                  {s.ctaText}
+                  <span
+                    className="inline-block ml-1.5 transition-transform duration-150 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </span>
+              </div>
+            </a>
           );
         })}
-
       </div>
-    </section>
-  );
-};
+
+    </div>
+  </section>
+);

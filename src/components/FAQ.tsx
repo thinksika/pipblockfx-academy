@@ -3,31 +3,35 @@ import React, { useState } from 'react';
 const FAQS = [
   {
     q: 'What is PiP Blocks Forex Trading Academy?',
-    a: 'PiP Blocks Forex Trading Academy is a growing forex trading community focused on market analysis, mentorship, shared trading ideas and practical trader development.',
+    a: 'PiP Blocks Forex Trading Academy is a growing forex trading community focused on market analysis, mentorship, practical training and trader development. We aim to give traders a structured, disciplined approach to the markets.',
   },
   {
     q: 'What does the mentorship program cover?',
-    a: 'The mentorship program covers 6 modules: Introduction to Forex, Market Structure, Storyline & Zone Selection, Liquidity Concepts, Entry Models (SNR Trendlines, TL Kiss, Entry Model), and Development & Management (Risk Management, Trading Psychology, Backtesting, Building a Trading Routine).',
+    a: 'The mentorship covers 6 modules: Introduction to Forex, Market Structure, Storyline & Zone Selection, Liquidity Concepts, Entry Models (SNR, Trendline Kiss, Entry Model), and Development & Management (Risk Management, Trading Psychology, Backtesting, Building a Trading Routine).',
   },
   {
-    q: 'How much is the mentorship program?',
-    a: 'The PiP Blocks Forex Mentorship Program is priced at $370. No refund policy applies. Please contact the team directly for full terms and conditions.',
+    q: 'How much does the mentorship cost?',
+    a: 'The PiP Blocks Forex Mentorship Program is priced at $370. A no-refund policy applies. Please contact the team directly for full terms and conditions before enrolling.',
   },
   {
     q: 'How can I join the Telegram community?',
-    a: 'Visit https://t.me/pipblcksfxhuz or click any "Join Community" button on this website to access the PiP Blocks Telegram channel.',
+    a: 'Visit https://t.me/pipblcksfxhuz or click any "Join Community" button on this website to access the PiP Blocks Telegram channel. It is free to join.',
+  },
+  {
+    q: 'How do I enquire about mentorship or bootcamp?',
+    a: 'Send a direct message to the team on Telegram at https://t.me/pipblockfx or via WhatsApp at https://wa.me/233538132060. The team will respond with full details.',
   },
   {
     q: 'Do you provide market analysis and signals?',
-    a: 'We share market observations, technical analysis, trade setups and trading ideas through our community channels on Telegram.',
+    a: 'We share market observations, technical analysis, trade setups and trading ideas through our community channels on Telegram. This is educational content and is not personalised financial advice.',
   },
   {
-    q: 'How do I register for a bootcamp?',
-    a: 'Bootcamp registrations are managed directly by the PiP Blocks team. Contact us via WhatsApp at https://wa.me/233538132060 or message directly on Telegram at https://t.me/pipblockfx. There is no online payment or checkout.',
+    q: 'What markets do you trade?',
+    a: 'PiP Blocks focuses primarily on Forex, with coverage of Synthetic Indices, Metals (XAU/USD, XAG/USD), Stock Indices (US30, NAS100), Commodities, and select Crypto pairs.',
   },
   {
-    q: 'Do you provide financial advice?',
-    a: 'PiP Blocks provides educational content, market analysis and trading ideas. This website does not provide personalised financial advice. Trading financial markets involves risk.',
+    q: 'Do you provide personalised financial advice?',
+    a: 'No. PiP Blocks provides educational content, market analysis and trading ideas only. Nothing on this website or in our community constitutes personalised financial advice. Trading financial markets involves risk.',
   },
 ];
 
@@ -35,25 +39,26 @@ export const FAQ: React.FC = () => {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" aria-label="Frequently asked questions" className="bg-white border-b border-pip-border">
-      <div className="max-w-site mx-auto px-5 sm:px-8 pb-12 sm:pb-16">
+    <section id="faq" aria-label="Frequently asked questions" className="bg-pip-surface border-b border-pip-border">
+      <div className="max-w-site mx-auto px-5 sm:px-8 pb-14">
 
         {/* Label */}
         <div className="py-5 border-b border-pip-border">
-          <span className="pip-label">08 — FAQ</span>
+          <span className="pip-label">10 — FAQ</span>
         </div>
 
         {/* Heading */}
-        <div className="pt-9 pb-7 border-b border-pip-border">
+        <div className="pt-10 pb-8 sm:pt-12 border-b border-pip-border">
           <h2
             className="font-display font-extrabold text-pip-charcoal"
             style={{
-              fontSize: 'clamp(1.5rem, 2.3vw, 2.1rem)',
+              fontSize: 'clamp(1.55rem, 2.8vw, 2.4rem)',
               lineHeight: '1.1',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.025em',
             }}
           >
-            Frequently Asked Questions
+            Frequently Asked{' '}
+            <span className="text-pip-red">Questions.</span>
           </h2>
         </div>
 
@@ -88,7 +93,7 @@ export const FAQ: React.FC = () => {
                 </button>
                 {isOpen && (
                   <div className="pb-5 pr-8">
-                    <p className="text-[14px] text-pip-mid leading-[1.72]">{faq.a}</p>
+                    <p className="text-[14px] text-pip-mid leading-[1.75]">{faq.a}</p>
                   </div>
                 )}
               </div>
