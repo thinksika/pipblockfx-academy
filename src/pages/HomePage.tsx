@@ -32,23 +32,15 @@ export const HomePage: React.FC = () => (
             color: '#171717',
           }}
         >
-          FOREX.<br />
+          TRADE<br />
           WITH<br />
-          <span style={{ color: '#E53514' }}>STRUCTURE.</span>
+          <span style={{ color: '#E53514' }}>PURPOSE.</span>
         </h1>
 
-        <p className="mt-5 lg:mt-7 text-[16px] lg:text-[17px] text-[#333] leading-[1.72] max-w-[420px]">
-          PiP Blocks is a trading education and community platform built around
-          market understanding, discipline, psychology and structured learning.
+        <p className="mt-5 lg:mt-7 text-[16px] lg:text-[17px] text-[#333] leading-[1.72] max-w-[400px]">
+          Education, mentorship and community for traders who want to understand
+          the market and develop their process.
         </p>
-
-        {/* Markets — plain text, wraps cleanly on any screen */}
-        <div className="mt-5">
-          <span className="pip-label block mb-1.5">Markets We Trade</span>
-          <p className="text-[11.5px] font-semibold text-[#555] tracking-wide leading-relaxed">
-            FOREX · SYNTHETICS · METALS · INDICES · COMMODITIES · CRYPTO
-          </p>
-        </div>
 
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <a
