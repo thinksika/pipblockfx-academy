@@ -60,19 +60,29 @@ export const Navbar: React.FC = () => {
 
           {/* CTA + hamburger */}
           <div className="flex items-center gap-3">
-            <a
-              href={TELEGRAM_COMMUNITY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:inline-flex btn-dark text-[11px] py-2.5 px-5"
-            >
-              Join Community
-            </a>
+            {/*
+             * IMPORTANT: Wrapping in a div (not directly on the <a>) so that
+             * Tailwind's `hidden` is not fighting btn-dark's display:inline-flex.
+             * Both live in @layer utilities; btn-dark appears later and wins.
+             * The wrapper div has no conflicting display class, so hidden works.
+             */}
+            <div className="hidden lg:block">
+              <a
+                href={TELEGRAM_COMMUNITY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-dark text-[11px] py-2.5 px-5"
+              >
+                Join Community
+              </a>
+            </div>
+
+            {/* Hamburger — mobile only */}
             <button
               type="button"
               aria-label={open ? 'Close menu' : 'Open menu'}
               onClick={() => setOpen(v => !v)}
-              className="lg:hidden flex flex-col justify-center gap-[5px] w-9 h-9"
+              className="lg:hidden flex flex-col justify-center gap-[5px] w-9 h-9 shrink-0"
             >
               <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
               <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? 'opacity-0' : ''}`} />

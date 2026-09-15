@@ -14,7 +14,7 @@ export const HomePage: React.FC = () => (
     <section className="flex flex-col lg:flex-row lg:min-h-[90vh]">
 
       {/* Copy — natural height on mobile, fills column on desktop */}
-      <div className="lg:flex-1 flex flex-col justify-center px-5 sm:px-10 lg:px-16 pt-10 pb-8 lg:py-0 lg:max-w-[52%]">
+      <div className="lg:flex-1 flex flex-col justify-center px-5 sm:px-10 lg:px-16 pt-9 pb-7 lg:py-0 lg:max-w-[52%]">
 
         <div className="flex items-center gap-2.5 mb-5 lg:mb-8">
           <span className="w-4 h-px bg-[#E53514]" />
@@ -50,16 +50,16 @@ export const HomePage: React.FC = () => (
           </p>
         </div>
 
-        <div className="mt-7 flex flex-col sm:flex-row gap-3">
+        <div className="mt-6 flex flex-col sm:flex-row gap-3">
           <a
             href={TELEGRAM_COMMUNITY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-dark"
+            className="btn-dark w-full sm:w-auto justify-center"
           >
             Join the Community →
           </a>
-          <Link to="/mentorship" className="btn-outline">
+          <Link to="/mentorship" className="btn-outline w-full sm:w-auto justify-center">
             Explore Mentorship →
           </Link>
         </div>
@@ -68,7 +68,7 @@ export const HomePage: React.FC = () => (
       {/* Mobile hero image — sits cleanly below text */}
       <div
         className="lg:hidden w-full relative overflow-hidden bg-[#111]"
-        style={{ height: '64vw', minHeight: 260, maxHeight: 400 }}
+        style={{ height: '68vw', minHeight: 300, maxHeight: 420 }}
       >
         <img
           src="/9B9A8725.jpg"
