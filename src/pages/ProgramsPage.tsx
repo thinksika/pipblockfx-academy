@@ -1,110 +1,153 @@
 import React from 'react';
-import { WHATSAPP_URL, TELEGRAM_DIRECT_URL } from '../data/siteData';
+import { TELEGRAM_DIRECT_URL, WHATSAPP_URL } from '../data/siteData';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
-export const ProgramsPage: React.FC = () => (
-  <div>
+const ProgramsPage: React.FC = () => {
+  const refHero = useScrollReveal();
+  const refBootcamp = useScrollReveal();
+  const refFlyer = useScrollReveal();
+  const refCta = useScrollReveal();
 
-    {/* ── PAGE HEADING ────────────────────────────────── */}
-    <section className="bg-[#111] border-b border-white/10">
-      <div className="max-w-[1380px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
-        <div className="flex items-center gap-2.5 mb-5">
-          <span className="w-2 h-2 rounded-full bg-[#E53514] animate-pulse" />
-          <span className="pip-label text-white/40">Upcoming Program</span>
-        </div>
-        <h1
-          style={{
-            fontFamily: '"Plus Jakarta Sans", Inter, system-ui, sans-serif',
-            fontWeight: 800,
-            fontSize: 'clamp(2rem, 4.5vw, 4rem)',
-            lineHeight: 1.04,
-            letterSpacing: '-0.04em',
-            color: '#fff',
-          }}
-        >
-          PIPBLOCKFX 2.0<br />
-          <span style={{ color: '#E53514' }}>BOOTCAMP</span>
-        </h1>
-      </div>
-    </section>
-
-    {/* ── MAIN CONTENT ─────────────────────────────────── */}
-    <section className="bg-white border-b border-[#E5E5E3]">
-      <div className="max-w-[1380px] mx-auto px-5 sm:px-8 py-12 sm:py-14">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-0">
-
-          {/* ── FLYER — the main visual ─────────────────── */}
-          <div className="lg:col-span-6 lg:pr-12 lg:border-r lg:border-[#E5E5E3]">
-            {/*
-             * BOOTCAMP_FLYER — This is the primary visual.
-             * File: /public/bootcamp_flyer.jpg
-             * Replace this comment with the real flyer if available.
-             *
-             * If bootcamp_flyer.jpg is a real image, it will display here.
-             * The div below handles the fallback placeholder state.
-             */}
-            <img
-              src="/bootcamp_flyer.jpg"
-              alt="PIPBLOCKFX 2.0 Bootcamp Program flyer"
-              className="w-full h-auto"
-              style={{ maxHeight: 700, objectFit: 'contain', objectPosition: 'top' }}
-              onError={(e) => {
-                const el = e.currentTarget;
-                el.style.display = 'none';
-                const parent = el.parentElement;
-                if (parent) {
-                  const placeholder = document.createElement('div');
-                  placeholder.style.cssText = 'aspect-ratio:3/4;background:#F7F7F5;border:1px solid #E5E5E3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;';
-                  placeholder.innerHTML = '<p style="font-size:10px;font-weight:700;letter-spacing:.14em;color:#E53514;text-transform:uppercase">Flyer Placeholder</p><p style="font-size:13px;color:#888;font-weight:500">BOOTCAMP_FLYER</p><p style="font-size:11px;color:#bbb">Replace with /public/bootcamp_flyer.jpg</p>';
-                  parent.appendChild(placeholder);
-                }
+  return (
+    <main>
+      {/* ── HERO BANNER ── */}
+      <section className="bg-[#0D0D0D] border-b border-white/10">
+        <div className="max-w-[1380px] mx-auto px-5 sm:px-8 py-20 sm:py-28">
+          <div ref={refHero} className="reveal">
+            <div className="flex items-center gap-2.5 mb-6">
+              <span className="w-4 h-px bg-[#E53514]" />
+              <span className="pip-label text-white/38">PiP Blocks Programs</span>
+            </div>
+            <h1
+              style={{
+                fontFamily: '"Plus Jakarta Sans", Inter, system-ui, sans-serif',
+                fontWeight: 800,
+                fontSize: 'clamp(2.6rem, 5.5vw, 4.8rem)',
+                letterSpacing: '-0.04em',
+                color: '#fff',
+                lineHeight: 1.06,
               }}
-            />
+            >
+              UPCOMING<br />PROGRAMS.
+            </h1>
+            <p className="mt-5 text-white/60 text-[17px] max-w-lg leading-relaxed">
+              Intensive training programs designed for practical market development.
+            </p>
           </div>
+        </div>
+      </section>
 
-          {/* ── Key info + registration ─────────────────── */}
-          <div className="lg:col-span-6 lg:pl-12">
+      {/* ── BOOTCAMP SECTION ── */}
+      <section className="bg-white py-14 sm:py-16 lg:py-20 border-b border-[#E5E5E3]">
+        <div className="max-w-[1380px] mx-auto px-5 sm:px-8">
+          <div ref={refBootcamp} className="reveal">
+            <p className="pip-label mb-3">CURRENT PROGRAM</p>
+            <h2
+              style={{
+                fontFamily: '"Plus Jakarta Sans", Inter, system-ui, sans-serif',
+                fontWeight: 800,
+                fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+                letterSpacing: '-0.04em',
+                color: '#171717',
+                lineHeight: 1.08,
+              }}
+            >
+              PIPBLOCKFX 2.0 BOOTCAMP.
+            </h2>
+            <p className="text-[16px] text-[#444] max-w-xl mt-4 mb-8 leading-[1.75]">
+              An intensive 4-day trading bootcamp followed by 2 months of signals — focused on
+              advanced market structure, liquidity, personal entries and risk management.
+            </p>
 
-            {/* Quick stats */}
-            <div className="grid grid-cols-2 gap-px bg-[#E5E5E3] mb-8">
+            {/* Key Details Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
               {[
-                { label: 'Fee',      val: '$60' },
-                { label: 'Dates',    val: 'Sept 21–24' },
-                { label: 'Capacity', val: '10 Only' },
-                { label: 'Bonus',    val: '2 Months Signals' },
-              ].map(d => (
-                <div key={d.label} className="bg-white p-5">
-                  <p className="pip-label mb-1">{d.label}</p>
-                  <p className="text-[17px] font-semibold text-[#171717]">{d.val}</p>
+                { label: 'Price',    val: '$60' },
+                { label: 'Dates',    val: '21–24 Sep' },
+                { label: 'Duration', val: '4D + 2M' },
+                { label: 'Capacity', val: 'Max 10' },
+              ].map(({ label, val }) => (
+                <div key={label} className="border border-[#E5E5E3] p-5 bg-[#F7F7F5]">
+                  <p className="pip-label mb-1.5">{label}</p>
+                  <p
+                    style={{
+                      fontFamily: '"Plus Jakarta Sans", Inter, system-ui, sans-serif',
+                      fontWeight: 800,
+                      fontSize: '20px',
+                      letterSpacing: '-0.03em',
+                      color: '#171717',
+                    }}
+                  >
+                    {val}
+                  </p>
                 </div>
               ))}
             </div>
 
-            {/* Registration */}
-            <div className="border border-[#E5E5E3] p-6 mb-5">
-              <p className="pip-label mb-3">How to Register</p>
-              <p className="text-[15px] text-[#444] leading-[1.7] mb-5">
-                All registrations are handled directly by the PiP Blocks team.
-                Contact via WhatsApp or Telegram — there is no online checkout.
+            <div className="w-8 h-px bg-[#E53514] mb-10" />
+          </div>
+
+          {/* BOOTCAMP FLYER */}
+          <div ref={refFlyer} className="reveal">
+            <div className="max-w-lg mx-auto">
+              <img
+                src="/bootcamp_flyer.jpg"
+                alt="PiP Blocks 2.0 Bootcamp Program Flyer"
+                className="w-full shadow-2xl"
+                loading="lazy"
+              />
+              <p className="text-[13px] text-[#888] text-center mt-3 tracking-wide">
+                PIPBLOCKFX 2.0 BOOTCAMP — Full program details shown above.
               </p>
-              <div className="flex flex-col gap-3">
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-dark justify-center">
-                  Register via WhatsApp →
-                </a>
-                <a href={TELEGRAM_DIRECT_URL} target="_blank" rel="noopener noreferrer" className="btn-outline justify-center">
-                  Message on Telegram →
-                </a>
-              </div>
             </div>
-
-            <p className="text-[12.5px] text-[#999] border-l-2 border-[#E5E5E3] pl-3 leading-relaxed">
-              Strictly 10 participants. No refund policy applies.
-              Contact the team for full details and payment instructions.
-            </p>
-
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </div>
-);
+      {/* ── CTA STRIP ── */}
+      <section className="bg-[#0D0D0D] py-12 border-t border-white/10">
+        <div className="max-w-[1380px] mx-auto px-5 sm:px-8 text-center">
+          <div ref={refCta} className="reveal">
+            <h2
+              style={{
+                fontFamily: '"Plus Jakarta Sans", Inter, system-ui, sans-serif',
+                fontWeight: 800,
+                fontSize: 'clamp(1.4rem, 3vw, 2rem)',
+                letterSpacing: '-0.04em',
+                color: '#fff',
+                lineHeight: 1.1,
+              }}
+            >
+              INTERESTED IN THE BOOTCAMP?
+            </h2>
+            <p className="mt-3 text-white/60 text-[16px] max-w-md mx-auto">
+              Reach out directly to enquire about availability and enrollment.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={TELEGRAM_DIRECT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-full sm:w-auto justify-center inline-flex"
+                style={{ padding: '13px 26px' }}
+              >
+                Enquire on Telegram →
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost-white w-full sm:w-auto justify-center inline-flex"
+                style={{ padding: '13px 26px' }}
+              >
+                Chat on WhatsApp →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default ProgramsPage;

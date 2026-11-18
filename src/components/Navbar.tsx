@@ -1,135 +1,225 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { TELEGRAM_COMMUNITY_URL } from '../data/siteData';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
-const NAV = [
-  { label: 'Home',       to: '/' },
-  { label: 'About',      to: '/about' },
+const NAV_LINKS = [
   { label: 'Mentorship', to: '/mentorship' },
-  { label: 'Programs',   to: '/programs' },
-  { label: 'Community',  to: '/community' },
+  { label: 'Insights',   to: '/insights'   },
+  { label: 'About',      to: '/about'       },
+  { label: 'Community',  to: '/community'   },
+  { label: 'FAQ',        to: '/#faq'        },
 ];
 
-export const Navbar: React.FC = () => {
-  const [open, setOpen]       = useState(false);
+export function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const h = () => setScrolled(window.scrollY > 8);
-    window.addEventListener('scroll', h, { passive: true });
-    return () => window.removeEventListener('scroll', h);
+    setMenuOpen(false);
+  }, [location]);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
-
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-[11px] font-semibold tracking-[0.12em] uppercase transition-colors ${
-      isActive ? 'text-[#E53514]' : 'text-[#555] hover:text-[#171717]'
-    }`;
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') setMenuOpen(false);
+  }, []);
 
   return (
     <>
-      {/* Bar */}
       <header
-        className={`fixed top-0 inset-x-0 z-50 bg-white border-b border-[#E5E5E3] transition-shadow duration-200 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled ? 'shadow-sm' : ''
         }`}
+        style={{
+          background: 'var(--cream)',
+          borderBottom: scrolled ? '1px solid var(--cream-border)' : '1px solid transparent',
+        }}
       >
-        <div className="max-w-[1380px] mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+        <div className="container">
+          <div className="flex items-center justify-between h-16 md:h-18">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2.5 flex-shrink-0" aria-label="PiP Blocks home">
+              <img
+                src="/pip-blocks-logo.png"
+                alt="PiP Blocks logo"
+                className="h-8 w-auto"
+                width="32"
+                height="32"
+              />
+              <div className="leading-none">
+                <div
+                  className="font-display text-sm tracking-wide"
+                  style={{ letterSpacing: '0.08em', fontSize: '13px', color: 'var(--charcoal)' }}
+                >
+                  PiP BLOCKS
+                </div>
+                <div
+                  className="text-muted"
+                  style={{ fontSize: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}
+                >
+                  FOREX TRADING ACADEMY
+                </div>
+              </div>
+            </Link>
 
-          {/* Logo */}
-          <Link to="/" onClick={() => setOpen(false)} className="shrink-0">
-            <img
-              src="/logo_pip.jpg"
-              alt="PiP Block Forex Trading Academy"
-              className="h-8 w-auto object-contain"
-            />
-          </Link>
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-7" aria-label="Main navigation">
+              {NAV_LINKS.map(({ label, to }) =>
+                to.startsWith('/#') ? (
+                  <a
+                    key={label}
+                    href={to}
+                    className="nav-link"
+                    style={{ fontSize: '14px', fontWeight: 600 }}
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <NavLink
+                    key={label}
+                    to={to}
+                    className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                    style={{ fontSize: '14px', fontWeight: 600 }}
+                  >
+                    {label}
+                  </NavLink>
+                )
+              )}
+            </nav>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Main">
-            {NAV.map(l => (
-              <NavLink key={l.to} to={l.to} end={l.to === '/'} className={linkClass}>
-                {l.label}
-              </NavLink>
-            ))}
-          </nav>
-
-          {/* CTA + hamburger */}
-          <div className="flex items-center gap-3">
-            {/*
-             * IMPORTANT: Wrapping in a div (not directly on the <a>) so that
-             * Tailwind's `hidden` is not fighting btn-dark's display:inline-flex.
-             * Both live in @layer utilities; btn-dark appears later and wins.
-             * The wrapper div has no conflicting display class, so hidden works.
-             */}
-            <div className="hidden lg:block">
+            {/* Desktop CTA */}
+            <div className="hidden md:block">
               <a
-                href={TELEGRAM_COMMUNITY_URL}
+                href="https://t.me/pipblcksfxhuz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-dark text-[11px] py-2.5 px-5"
+                className="btn btn-primary"
+                style={{ padding: '10px 20px', fontSize: '13px' }}
               >
-                Join Community
+                Join Community ↗
               </a>
             </div>
 
-            {/* Hamburger — mobile only */}
+            {/* Mobile hamburger */}
             <button
               type="button"
-              aria-label={open ? 'Close menu' : 'Open menu'}
-              onClick={() => setOpen(v => !v)}
-              className="lg:hidden flex flex-col justify-center gap-[5px] w-9 h-9 shrink-0"
+              className="md:hidden flex items-center justify-center w-10 h-10 -mr-2"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
             >
-              <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
-              <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? 'opacity-0' : ''}`} />
-              <span className={`block w-5 h-[1.5px] bg-[#171717] transition-all duration-200 ${open ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
+              <svg width="22" height="16" viewBox="0 0 22 16" fill="none" aria-hidden="true">
+                <rect y="0"  width="22" height="2" rx="1" fill="currentColor" />
+                <rect y="7"  width="16" height="2" rx="1" fill="currentColor" />
+                <rect y="14" width="22" height="2" rx="1" fill="currentColor" />
+              </svg>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
         role="dialog"
         aria-modal="true"
-        className={`fixed inset-0 z-40 bg-white flex flex-col pt-16 lg:hidden transition-opacity duration-200 ${
-          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        aria-label="Mobile navigation"
+        className={`mobile-menu ${menuOpen ? 'open' : ''}`}
+        onKeyDown={handleKeyDown}
       >
-        <nav className="flex-1 overflow-y-auto px-5 pt-2 pb-10">
-          {NAV.map(l => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              end={l.to === '/'}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center justify-between py-5 border-b border-[#E5E5E3] text-[17px] font-semibold ${
-                  isActive ? 'text-[#E53514]' : 'text-[#171717]'
-                }`
-              }
+        {/* Mobile menu header */}
+        <div
+          className="flex items-center justify-between px-6 h-16 flex-shrink-0"
+          style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+        >
+          <Link to="/" className="flex items-center gap-2.5" onClick={() => setMenuOpen(false)}>
+            <img src="/pip-mark.png" alt="PiP Blocks" className="h-8 w-auto" />
+            <span
+              className="font-display text-white"
+              style={{ letterSpacing: '0.06em', fontSize: '13px' }}
             >
-              {l.label}
-              <span className="text-[#ccc] text-sm">→</span>
-            </NavLink>
-          ))}
-          <div className="mt-8">
+              PiP BLOCKS
+            </span>
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            className="flex items-center justify-center w-10 h-10 text-white"
+            aria-label="Close menu"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <line x1="2" y1="2" x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <line x1="18" y1="2" x2="2" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Menu links */}
+        <nav className="flex flex-col px-6 pt-8 pb-4 flex-1" aria-label="Mobile navigation">
+          {NAV_LINKS.map(({ label, to }) =>
+            to.startsWith('/#') ? (
+              <a
+                key={label}
+                href={to}
+                className="mobile-menu-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                key={label}
+                to={to}
+                className="mobile-menu-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            )
+          )}
+
+          {/* Mobile CTA */}
+          <div className="mt-8 pt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
             <a
-              href={TELEGRAM_COMMUNITY_URL}
+              href="https://t.me/pipblcksfxhuz"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="btn-dark w-full py-4 text-[13px]"
+              className="btn btn-primary w-full justify-center"
+              onClick={() => setMenuOpen(false)}
             >
-              Join Community →
+              Join Community ↗
+            </a>
+            <a
+              href="https://wa.me/233538132060"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline-white w-full justify-center mt-3"
+              onClick={() => setMenuOpen(false)}
+            >
+              WhatsApp →
             </a>
           </div>
         </nav>
+
+        {/* Mobile footer note */}
+        <p className="px-6 pb-8 text-xs" style={{ color: 'rgba(255,255,255,0.3)', letterSpacing: '0.04em' }}>
+          Education first. Process over promises.
+        </p>
       </div>
     </>
   );
-};
+}
