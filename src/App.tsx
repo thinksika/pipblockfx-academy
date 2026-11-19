@@ -17,7 +17,7 @@ export default function App() {
           <Route path="mentorship" element={<MentorshipPage />} />
           <Route path="insights"   element={<InsightsPage />}  />
           <Route path="community"  element={<CommunityPage />} />
-          {/* Catch-all — redirect unknown routes to home */}
+          {/* Catch-all */}
           <Route path="*"          element={<HomePage />}      />
         </Route>
       </Routes>

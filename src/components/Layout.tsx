@@ -5,18 +5,14 @@ import { Footer } from './Footer';
 
 export function Layout() {
   const { pathname } = useLocation();
-
-  // Scroll to top on route change
   React.useEffect(() => {
-    if (!pathname.includes('#')) {
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }
+    if (!pathname.includes('#')) window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
-      <main id="main-content" className="flex-1" style={{ paddingTop: '64px' }}>
+      <main id="main-content" style={{ flex: 1, paddingTop: '66px' }}>
         <Outlet />
       </main>
       <Footer />
