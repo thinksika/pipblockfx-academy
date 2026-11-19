@@ -349,24 +349,24 @@ export function HomePage() {
       {/* ══════════════════════════════════════
           HERO — cream bg, left content, right card slider
       ══════════════════════════════════════ */}
-      <section style={{ background: 'var(--cream)', padding: 'clamp(48px, 8vw, 96px) 0 clamp(40px, 6vw, 72px)' }}>
+      <section style={{ background: 'var(--cream)' }} className="pt-5 pb-6 lg:pt-20 lg:pb-16">
         <div className="container">
           <div
-            style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '40px', alignItems: 'center' }}
+            style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', alignItems: 'center' }}
             className="lg:grid-cols-2 lg:gap-16"
           >
             {/* LEFT — content */}
             <div ref={r1} className="reveal">
-              <p className="eyebrow" style={{ marginBottom: '20px' }}>
+              <p className="eyebrow" style={{ marginBottom: '10px' }}>
                 PiP Blocks Trading Academy · Ghana
               </p>
 
-              <h1 style={{ marginBottom: '20px', margin: '0 0 20px' }}>
+              <h1 style={{ margin: '0 0 12px' }}>
                 <span style={{
                   display: 'block',
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontWeight: 800,
-                  fontSize: 'clamp(2.5rem, 5.5vw, 4rem)',
+                  fontSize: 'clamp(2.1rem, 5.5vw, 4rem)',
                   color: 'var(--charcoal)',
                   lineHeight: 1.03,
                   letterSpacing: '-0.03em',
@@ -378,7 +378,7 @@ export function HomePage() {
                   fontFamily: "'Playfair Display', serif",
                   fontStyle: 'italic',
                   fontWeight: 800,
-                  fontSize: 'clamp(2.3rem, 5vw, 3.8rem)',
+                  fontSize: 'clamp(2rem, 5vw, 3.8rem)',
                   color: 'var(--orange)',
                   lineHeight: 1.06,
                   letterSpacing: '-0.02em',
@@ -388,17 +388,17 @@ export function HomePage() {
               </h1>
 
               <p style={{
-                fontSize: 'clamp(15px, 2vw, 17px)',
+                fontSize: 'clamp(14px, 2vw, 16px)',
                 color: 'var(--muted)',
-                lineHeight: 1.72,
+                lineHeight: 1.65,
                 maxWidth: '460px',
-                margin: '20px 0 28px',
+                margin: '12px 0 18px',
               }}>
                 Practical forex education, structured mentorship and a community built around understanding price, developing discipline and improving your trading process.
               </p>
 
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '28px' }}>
-                <Link to="/mentorship" className="btn btn-orange">
+              <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }} className="flex-col sm:flex-row">
+                <Link to="/mentorship" className="btn btn-orange" style={{ justifyContent: 'center' }}>
                   Explore mentorship →
                 </Link>
                 <a
@@ -406,6 +406,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline"
+                  style={{ justifyContent: 'center' }}
                 >
                   Join the community ↗
                 </a>
@@ -442,7 +443,7 @@ export function HomePage() {
             <div
               style={{
                 position: 'relative',
-                height: 'clamp(340px, 50vw, 520px)',
+                height: 'clamp(260px, 70vw, 520px)',
                 borderRadius: 'var(--radius-xl)',
                 overflow: 'hidden',
                 boxShadow: 'var(--shadow-lg)',

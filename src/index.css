@@ -571,3 +571,23 @@ img { display: block; max-width: 100%; }
 @media (max-width: 640px) {
   .mobile-sheet { padding: 4px 16px 20px; }
 }
+
+/* ── Responsive layout utilities (override inline styles) ─────────── */
+.hidden   { display: none !important; }
+.flex-col { flex-direction: column; }
+@media (min-width: 640px)  { .sm\:flex-row     { flex-direction: row !important; } }
+@media (min-width: 768px)  {
+  .md\:flex        { display: flex !important; }
+  .md\:hidden      { display: none !important; }
+  .md\:inline-flex { display: inline-flex !important; }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2  { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .lg\:gap-16       { gap: 4rem !important; }
+  .lg\:items-center { align-items: center !important; }
+  .lg\:items-end    { align-items: flex-end !important; }
+  .lg\:pt-20        { padding-top: 5rem !important; }
+  .lg\:pb-16        { padding-bottom: 4rem !important; }
+}
